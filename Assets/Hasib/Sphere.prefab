@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 7424230100491062289}
   - component: {fileID: -7133886062927084027}
   - component: {fileID: 8314779579338180188}
+  - component: {fileID: 2987685983367811896}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: bullet
@@ -287,3 +288,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usePerfectBounce: 1
   speedMultiplier: 1
+--- !u!114 &2987685983367811896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572938009272192328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d2befbc8255a64781753165a7b8831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBeingPulled: 0
+  magnet: {fileID: 0}
+  pullForce: 15
+  maxSpeed: 20
