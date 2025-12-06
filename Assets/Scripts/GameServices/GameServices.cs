@@ -33,6 +33,8 @@ public class GameServices : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //EventManager.FireGameServiceInitialized();
     }
 
     // Add your game service methods and properties here
