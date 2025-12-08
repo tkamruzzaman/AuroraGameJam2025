@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private Animator playerAnimator;
 
-
+[SerializeField] private InputActionAsset InputActions; 
     InputAction moveAction;
     InputAction jumpAction;
 
@@ -19,20 +19,30 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+         moveAction = InputSystem.actions.FindAction("Move");
+        jumpAction = InputSystem.actions.FindAction("Jump");
+
         playerRigidbody ??= GetComponent<Rigidbody2D>();
         playerCollider ??= GetComponent<Collider2D>();
         playerAnimator ??= GetComponent<Animator>();
     }
+    private void OnEnable() {
+        InputActions.FindActionMap("Player").Enable();
+    }
+    private void OnDisable() {
+        InputActions.FindActionMap("Player").Disable();
+    }
     private void Start()
     {
-        moveAction = InputSystem.actions.FindAction("Move");
-        jumpAction = InputSystem.actions.FindAction("Jump");
+       
     }
 
     private void Update()
     {
         Movement();
-        Jumping();
+        if(jumpAction.WasPressedThisFrame())    {
+        Jump();
+        }
 
         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(IDLE_STATE))
         {
@@ -64,7 +74,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Jumping()
+    private void Jump()
     {
         if (jumpAction.triggered && GroundCheck() && !isJumping)
         {
