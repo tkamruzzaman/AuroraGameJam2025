@@ -7,7 +7,8 @@ public class EchoBallMovement : MonoBehaviour
 
     [Header("Movement Settings")]
     public float maxSpeed = 15f;     // Peak speed
-    public AnimationCurve speedCurve; // Controls mellow acceleration/deceleration
+
+    public AnimationCurve mellowCurve; // Controls mellow acceleration/deceleration
     public float curveDuration = 1.5f;
 
     private Vector3 launchDir;
@@ -16,7 +17,16 @@ public class EchoBallMovement : MonoBehaviour
     public void Launch(Vector3 dir)
     {
         launchDir = dir.normalized;
+        //timer = 0f;  // reset mellow curve
     }
+
+    public void Bounce(Vector3 newDir, float newSpeedMultiplier)
+    {
+        launchDir = newDir.normalized;
+        maxSpeed *= newSpeedMultiplier;  // optional, keeps mellow feel
+        timer = 0f;                      // restart mellow curve from new direction
+    }
+
 
     void FixedUpdate()
     {
@@ -24,7 +34,7 @@ public class EchoBallMovement : MonoBehaviour
         float t = Mathf.Clamp01(timer / curveDuration);
 
         // Curve defines "how fast should the ball be right now"
-        float curveSpeed = speedCurve.Evaluate(t);
+        float curveSpeed = mellowCurve.Evaluate(t);
 
         // Final speed = maxSpeed multiplied by curve value
         float currentSpeed = curveSpeed * maxSpeed;
@@ -36,6 +46,12 @@ public class EchoBallMovement : MonoBehaviour
         vel.z = 0;
 
         rb.linearVelocity = vel;
+        //Rotate();
+    }
+
+    void Rotate()
+    {
+        transform.Rotate(Vector3.up * 2f* Time.deltaTime);
     }
 }
 

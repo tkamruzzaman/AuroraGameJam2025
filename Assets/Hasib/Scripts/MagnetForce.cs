@@ -36,8 +36,10 @@ public class MagnetForce : MonoBehaviour
             isAlreadyActive = true;
             DisableColliders();
             ChangeColor();
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;  
+            Destroy(other.gameObject,5f);
         }
+        
     }
 
     void ChangeColor()

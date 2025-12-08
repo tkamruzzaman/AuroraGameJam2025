@@ -202,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 185044623}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.61, y: 0, z: -26}
+  m_LocalPosition: {x: 7.61, y: 1.92, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -225,6 +225,8 @@ MonoBehaviour:
   player: {fileID: 0}
   bulletForce: 5
   planeZ: -26
+  aimIndicator: {fileID: 0}
+  aimIndicatorSprite: {fileID: 0}
 --- !u!114 &185044627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,6 +389,7 @@ GameObject:
   - component: {fileID: 332134809}
   - component: {fileID: 332134808}
   - component: {fileID: 332134807}
+  - component: {fileID: 332134811}
   m_Layer: 0
   m_Name: Wall (3)
   m_TagString: Obstacle
@@ -483,6 +486,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &332134811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332134806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336476415922b4f4dafe8409dd683708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeedMultiplier: 1
 --- !u!1 &512790719
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +511,7 @@ GameObject:
   - component: {fileID: 512790722}
   - component: {fileID: 512790721}
   - component: {fileID: 512790720}
+  - component: {fileID: 512790724}
   m_Layer: 0
   m_Name: Wall (2)
   m_TagString: Obstacle
@@ -591,6 +608,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &512790724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512790719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336476415922b4f4dafe8409dd683708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeedMultiplier: 1.5
 --- !u!1 &633733353
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +697,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4.31
+  m_Radius: 1.26
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &633733357
 MeshRenderer:
@@ -692,7 +722,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5762643f6d7c2184abd8b2861aa9a008, type: 2}
+  - {fileID: 2100000, guid: ed04fcff4a737f244ab90798e3d06392, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -763,14 +793,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798877665}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7199457, w: 0.6940304}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1502299070}
   m_Father: {fileID: 185044625}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 92.1}
 --- !u!114 &798877667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,6 +817,8 @@ MonoBehaviour:
   player: {fileID: 0}
   bulletForce: 10
   planeZ: -26
+  aimIndicator: {fileID: 798877665}
+  aimIndicatorSprite: {fileID: 1502299071}
 --- !u!212 &798877668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -856,7 +888,7 @@ GameObject:
   - component: {fileID: 1115184801}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1050,6 +1082,7 @@ GameObject:
   - component: {fileID: 1373637168}
   - component: {fileID: 1373637167}
   - component: {fileID: 1373637166}
+  - component: {fileID: 1373637170}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Obstacle
@@ -1146,6 +1179,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373637170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373637165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336476415922b4f4dafe8409dd683708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeedMultiplier: 0.5
 --- !u!1 &1423433165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,7 +1250,7 @@ Transform:
   m_GameObject: {fileID: 1502299069}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1277,6 +1323,7 @@ GameObject:
   - component: {fileID: 1640493200}
   - component: {fileID: 1640493199}
   - component: {fileID: 1640493198}
+  - component: {fileID: 1640493202}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Obstacle
@@ -1373,6 +1420,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1640493202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640493197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336476415922b4f4dafe8409dd683708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeedMultiplier: 1.5
 --- !u!1 &1681661632
 GameObject:
   m_ObjectHideFlags: 0
