@@ -1,7 +1,7 @@
-using UnityEngine;
+//using UnityEngine;
 using System;
 
-public class EventManager : MonoBehaviour
+public class EventManager //: MonoBehaviour
 {
     public static event EventHandler  OnGameServiceInitialized;
 
