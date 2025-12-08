@@ -88,7 +88,7 @@ public class Shoot : MonoBehaviour
 
     bool AngleCheck(float angle)
     {
-        if ((angle >= 140 && angle <= 160)||(angle >= 20 && angle <= 40))
+        if ((angle >= 100 && angle <= 170)||(angle >= 20 && angle <= 70))
         {
             aimIndicatorSprite.color = Color.green;
             return true ;
