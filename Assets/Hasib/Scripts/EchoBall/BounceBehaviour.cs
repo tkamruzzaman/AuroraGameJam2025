@@ -4,7 +4,7 @@ using UnityEngine;
 public class BounceBehaviour : MonoBehaviour
 {
     public bool usePerfectBounce = true;
-    public float speedMultiplier = 1f;
+   
 
     Rigidbody rb;
     Vector3 lastVelocity;
@@ -26,7 +26,7 @@ public class BounceBehaviour : MonoBehaviour
         {
             var speed = lastVelocity.magnitude;
             var direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
-            rb.linearVelocity = direction * speed * speedMultiplier;
+            rb.linearVelocity = direction * speed * collision.gameObject.GetComponent<Bounciness>().BounceSpeedMultiplier;
             
         }
     }

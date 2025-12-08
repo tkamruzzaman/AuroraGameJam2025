@@ -38,16 +38,33 @@ public class Shoot : MonoBehaviour
 
             // Direction to mouse
             Vector3 dir = mouseWorld - spawnPos;
-            dir.z = 0;
-
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb.AddForce(dir.normalized * bulletForce, ForceMode.Impulse);
-
-            // Lock 2.5D plane
-            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            MoveBullet(dir, bullet);
         }
     }
 
+    // void MoveBullet(Vector3 dir, GameObject bullet)
+    // {
+    //     dir.z = 0;
+    //
+    //     Rigidbody rb = bullet.GetComponent<Rigidbody>();
+    //     rb.AddForce(dir.normalized * bulletForce, ForceMode.Impulse);
+    //
+    //     // Lock 2.5D plane
+    //     rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+    // }
+
+    void MoveBullet(Vector3 dir, GameObject bullet)
+    {
+        dir.z = 0;
+
+        EchoBallMovement mb = bullet.GetComponent<EchoBallMovement>();
+        mb.Launch(dir);
+
+        // Lock 2.5D
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+    }
+    
     void Aim()
     {
         // Bullet is shot on planeZ, so aim on the same plane
