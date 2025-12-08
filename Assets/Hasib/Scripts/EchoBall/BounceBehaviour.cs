@@ -44,9 +44,12 @@ public class BounceBehaviour : MonoBehaviour
         var speed = lastVelocity.magnitude;
         var normal = collision.contacts[0].normal;
         var direction = Vector3.Reflect(lastVelocity.normalized, normal);
+        Vector3 hitPosition = collision.contacts[0].point;
 
+    // Compare hit position with tree's position
+        bool hitFromRight = hitPosition.x > transform.position.x;
         var bounce = collision.gameObject.GetComponent<Bounciness>().BounceSpeedMultiplier;
-
+        collision.gameObject.GetComponent<Bounciness>().BounceTree(hitFromRight);
         // Tell mellow system to use the bounced direction
         GetComponent<EchoBallMovement>().Bounce(direction, bounce);
     }
