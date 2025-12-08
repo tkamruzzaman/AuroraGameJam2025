@@ -1,30 +1,30 @@
 using UnityEngine;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    //[SerializeField] private InputActionAsset InputSystem;
     const string IS_WALKING = "IsWalking";
-    //player move 
+    const string IDLE_STATE = "IdleBlendTree";
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
-[SerializeField] private Rigidbody2D playerRigidbody;
-[SerializeField] private Collider2D playerCollider;
-[SerializeField] private Animator playerAnimator;
+    [SerializeField] private Rigidbody2D playerRigidbody;
+    [SerializeField] private Collider2D playerCollider;
+    [SerializeField] private Animator playerAnimator;
 
 
-
-        InputAction moveAction;
+    InputAction moveAction;
     InputAction jumpAction;
 
     bool isJumping;
 
-private void Awake() {
+    private void Awake()
+    {
         playerRigidbody ??= GetComponent<Rigidbody2D>();
-        playerCollider ??= GetComponent<Collider2D>();   
+        playerCollider ??= GetComponent<Collider2D>();
         playerAnimator ??= GetComponent<Animator>();
-}
-    private void Start() {
+    }
+    private void Start()
+    {
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
     }
@@ -33,13 +33,18 @@ private void Awake() {
     {
         Movement();
         Jumping();
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(IDLE_STATE))
+        {
+            Debug.Log("idle state. change the idle animation here maybe?");
+        }
     }
 
     private void Movement()
     {
 
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
-   float moveX = moveValue.x;
+        float moveX = moveValue.x;
         float moveY = moveValue.y;
 
         Vector3 movement = new Vector3(moveX, 0, moveY) * moveSpeed * Time.deltaTime;
@@ -61,13 +66,14 @@ private void Awake() {
 
     private void Jumping()
     {
-if (jumpAction.triggered && GroundCheck() && !isJumping)
+        if (jumpAction.triggered && GroundCheck() && !isJumping)
         {
-            //isJumping = true;   
+            isJumping = true;   
             print("Jump!");
             playerRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-        }    }
+        }
+    }
 
     private bool GroundCheck()
     {
@@ -77,6 +83,14 @@ if (jumpAction.triggered && GroundCheck() && !isJumping)
         // {
         //     return false;
         // }   
-        return true; 
+        return true;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.contacts[0].normal.y > 0.5f)
+        {
+            isJumping = false;
+        }
     }
 }
