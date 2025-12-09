@@ -26,7 +26,7 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
-        transform.localScale = transform.localScale * (character.transform.localScale.x/character.transform.localScale.x);
+        //transform.localScale = transform.localScale * (character.transform.localScale.x/character.transform.localScale.x);
         float dist = Mathf.Abs(Camera.main.transform.position.z - planeZ);
 
         // Correct world position of mouse
