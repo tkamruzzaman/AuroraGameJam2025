@@ -45,7 +45,7 @@ public class BounceBehaviour : MonoBehaviour
         var normal = collision.contacts[0].normal;
         var direction = Vector3.Reflect(lastVelocity.normalized, normal);
         Vector3 hitPosition = collision.contacts[0].point;
-
+        //direction = direction + new Vector3(0f,collision.gameObject.GetComponent<Bounciness>().BounceAngle,0f);
     // Compare hit position with tree's position
         bool hitFromRight = hitPosition.x > transform.position.x;
         var bounce = collision.gameObject.GetComponent<Bounciness>().BounceSpeedMultiplier;

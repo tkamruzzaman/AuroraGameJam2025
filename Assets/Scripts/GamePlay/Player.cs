@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public static bool iswalkingAnimationTrue;
     const string IS_WALKING = "IsWalking";
     const string IDLE_STATE = "IdleBlendTree";
     [SerializeField] private float moveSpeed = 5f;
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRigidbody;
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private GameObject playerArt;
 
 [SerializeField] private InputActionAsset InputActions; 
     InputAction moveAction;
@@ -57,20 +59,23 @@ public class Player : MonoBehaviour
         float moveX = moveValue.x;
         float moveY = moveValue.y;
 
-        Vector3 movement = new Vector3(moveX, 0, moveY) * moveSpeed * Time.deltaTime;
+        Vector3 movement = new Vector3(moveX, 0, 0) * moveSpeed * Time.deltaTime;
         transform.Translate(movement, Space.World);
 
         if (moveX != 0)
         {
             playerAnimator.SetBool(IS_WALKING, true);
             //flip on move direction
-            Vector3 scale = transform.localScale;
+            Vector3 scale = playerArt.transform.localScale;
             scale.x = Mathf.Sign(moveX) * Mathf.Abs(scale.x);
-            transform.localScale = scale;
+            playerArt.transform.localScale = scale;
+            //transform.localScale = scale;
+            iswalkingAnimationTrue = true;
         }
         else
         {
             playerAnimator.SetBool(IS_WALKING, false);
+            iswalkingAnimationTrue = false;
         }
     }
 
