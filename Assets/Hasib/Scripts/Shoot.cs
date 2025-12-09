@@ -4,12 +4,14 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] GameObject character;
     [SerializeField] private Transform player;
     [SerializeField] private float bulletForce = 10f;
     [SerializeField] private float planeZ = 0f;
     private Vector3 mousePosition;
     [SerializeField] GameObject aimIndicator;
     [SerializeField] SpriteRenderer aimIndicatorSprite;
+
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
+        transform.localScale = transform.localScale * (character.transform.localScale.x/character.transform.localScale.x);
         float dist = Mathf.Abs(Camera.main.transform.position.z - planeZ);
 
         // Correct world position of mouse
@@ -45,7 +48,7 @@ public class Shoot : MonoBehaviour
         transform.rotation =
             Quaternion.Lerp(aimIndicator.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         Debug.Log(transform.eulerAngles.z);
-
+        
         if (AngleCheck(transform.eulerAngles.z) && Input.GetMouseButtonDown(0)  )
         {
             // Distance from camera to your plane
@@ -60,6 +63,8 @@ public class Shoot : MonoBehaviour
             MoveBullet(dir, bullet);
         }
     }
+
+
 
     
     
@@ -88,7 +93,8 @@ public class Shoot : MonoBehaviour
 
     bool AngleCheck(float angle)
     {
-        if ((angle >= 100 && angle <= 170)||(angle >= 20 && angle <= 70))
+        // (angle >= 100 && angle <= 170)||
+        if ((angle >= 20 && angle <= 70))
         {
             aimIndicatorSprite.color = Color.green;
             return true ;
