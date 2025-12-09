@@ -14,6 +14,7 @@ public class AuroraPointsConnector : MonoBehaviour
     {
         mainCamera = Camera.main;
         //lineRenderer.positionCount = 0;
+        //check
     }
     private void Update()
     {
