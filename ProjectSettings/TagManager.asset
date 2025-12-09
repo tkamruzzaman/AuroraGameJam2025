@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 3
   tags:
   - Obstacle
+  - bullet
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - IgnoreLight
   - Water
   - UI
   - LightenedObjects
