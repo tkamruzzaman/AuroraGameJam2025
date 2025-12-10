@@ -725,6 +725,63 @@ MonoBehaviour:
   swingDuration: 1.5
   oscillations: 2
   fallableSnow: 0
+--- !u!1001 &343012712
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1240608785}
+    m_Modifications:
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343555116943507334, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+      propertyPath: m_Name
+      value: ChristmasTree_1 (12)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
 --- !u!1 &409723196 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6517073816740362697, guid: b25211b045fb34182b8a55cc50a51c78, type: 3}
@@ -1128,7 +1185,7 @@ Transform:
   m_GameObject: {fileID: 641675262}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9995599, z: -0, w: 0.029666247}
-  m_LocalPosition: {x: -14.6, y: 1.55, z: -2.1}
+  m_LocalPosition: {x: -0.13, y: 0, z: 0.04}
   m_LocalScale: {x: 5.98, y: 5.98, z: 5.98}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1168,8 +1225,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.85660374, g: 0.85660374, b: 0.85660374, a: 1}
-  m_Intensity: 0.11
-  m_Range: 3.65
+  m_Intensity: 0.09
+  m_Range: 2.66
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -7250,6 +7307,7 @@ Transform:
   - {fileID: 3437004566722006832}
   - {fileID: 1468979059154269171}
   - {fileID: 3639571586709593550}
+  - {fileID: 1910108652}
   - {fileID: 1325420378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13060,6 +13118,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870553036}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1910108652 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4274522345511990631, guid: a5a923ca8d743ff4bbff2969969738e1, type: 3}
+  m_PrefabInstance: {fileID: 343012712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1911106912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13502,18 +13565,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1240608785}
     m_Modifications:
     - target: {fileID: 4274522345511990631, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4274522345511990631, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4274522345511990631, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4274522345511990631, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.86
       objectReference: {fileID: 0}
@@ -13557,10 +13608,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChristmasTree_1 (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 7341833443775046216, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0aca23996eaeda24d978952d9dce2dc3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13599,18 +13646,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1240608785}
     m_Modifications:
-    - target: {fileID: 21740032112206278, guid: 6f1908cf1e814834d8f1c5fd0b71dda3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 21740032112206278, guid: 6f1908cf1e814834d8f1c5fd0b71dda3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 21740032112206278, guid: 6f1908cf1e814834d8f1c5fd0b71dda3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 21740032112206278, guid: 6f1908cf1e814834d8f1c5fd0b71dda3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.65
@@ -13651,10 +13686,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5108159517297981199, guid: 6f1908cf1e814834d8f1c5fd0b71dda3, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0aca23996eaeda24d978952d9dce2dc3, type: 2}
     - target: {fileID: 7167167663741890898, guid: 6f1908cf1e814834d8f1c5fd0b71dda3, type: 3}
       propertyPath: m_Name
       value: ChristmasTree_1 (9)
@@ -13672,18 +13703,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1240608785}
     m_Modifications:
-    - target: {fileID: 3208781180536269477, guid: ec9dd02f76c5b9946895a23dec987c50, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208781180536269477, guid: ec9dd02f76c5b9946895a23dec987c50, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208781180536269477, guid: ec9dd02f76c5b9946895a23dec987c50, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3208781180536269477, guid: ec9dd02f76c5b9946895a23dec987c50, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.98
@@ -13728,10 +13747,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChristmasTree_1 (10)
       objectReference: {fileID: 0}
-    - target: {fileID: 8711232489129871856, guid: ec9dd02f76c5b9946895a23dec987c50, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0aca23996eaeda24d978952d9dce2dc3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13745,18 +13760,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1240608785}
     m_Modifications:
-    - target: {fileID: 470158982070806287, guid: 1ab42a36ca5aa06408c9559bad9a0da6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470158982070806287, guid: 1ab42a36ca5aa06408c9559bad9a0da6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470158982070806287, guid: 1ab42a36ca5aa06408c9559bad9a0da6, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 470158982070806287, guid: 1ab42a36ca5aa06408c9559bad9a0da6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.27
@@ -13797,10 +13800,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4727280806799841723, guid: 1ab42a36ca5aa06408c9559bad9a0da6, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0aca23996eaeda24d978952d9dce2dc3, type: 2}
     - target: {fileID: 7475850373881509030, guid: 1ab42a36ca5aa06408c9559bad9a0da6, type: 3}
       propertyPath: m_Name
       value: ChristmasTree_1 (8)
@@ -13818,18 +13817,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1240608785}
     m_Modifications:
-    - target: {fileID: 4492916490992663015, guid: 390cd81689c2c0e47b4c569c256dfc0a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4492916490992663015, guid: 390cd81689c2c0e47b4c569c256dfc0a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4492916490992663015, guid: 390cd81689c2c0e47b4c569c256dfc0a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4492916490992663015, guid: 390cd81689c2c0e47b4c569c256dfc0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.08
@@ -13874,10 +13861,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChristmasTree_1 (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 7636970138737486009, guid: 390cd81689c2c0e47b4c569c256dfc0a, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0aca23996eaeda24d978952d9dce2dc3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
