@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
     public static bool iswalkingAnimationTrue;
     const string IS_WALKING = "IsWalking";
     const string IDLE_STATE = "IdleBlendTree";
+    const string IS_CALLING = "IsCalling";
+
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private Rigidbody2D playerRigidbody;
@@ -13,37 +15,48 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private GameObject playerArt;
 
-[SerializeField] private InputActionAsset InputActions; 
+    [SerializeField] private InputActionAsset InputActions;
     InputAction moveAction;
     InputAction jumpAction;
+    InputAction interactAction;
 
     bool isJumping;
 
     private void Awake()
     {
-         moveAction = InputSystem.actions.FindAction("Move");
+        moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        interactAction = InputSystem.actions.FindAction("Interact");
 
         playerRigidbody ??= GetComponent<Rigidbody2D>();
         playerCollider ??= GetComponent<Collider2D>();
         playerAnimator ??= GetComponent<Animator>();
     }
-    private void OnEnable() {
+    private void OnEnable()
+    {
         InputActions.FindActionMap("Player").Enable();
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         InputActions.FindActionMap("Player").Disable();
     }
     private void Start()
     {
-       
+
     }
 
     private void Update()
     {
         Movement();
-        if(jumpAction.WasPressedThisFrame())    {
-        Jump();
+
+        if (jumpAction.WasPressedThisFrame())
+        {
+            Jump();
+        }
+
+        if (interactAction.WasPressedThisFrame())
+        {
+            CallAction();
         }
 
         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(IDLE_STATE))
@@ -83,7 +96,7 @@ public class Player : MonoBehaviour
     {
         if (jumpAction.triggered && GroundCheck() && !isJumping)
         {
-            isJumping = true;   
+            isJumping = true;
             print("Jump!");
             playerRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
@@ -107,5 +120,11 @@ public class Player : MonoBehaviour
         {
             isJumping = false;
         }
+    }
+
+    public void CallAction()
+    {
+        playerAnimator.SetBool(IS_CALLING, true);
+        //play calling sound
     }
 }

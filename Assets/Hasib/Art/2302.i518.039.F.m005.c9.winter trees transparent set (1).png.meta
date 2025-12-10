@@ -1,0 +1,360 @@
+fileFormatVersion: 2
+guid: 6c2bb9cf458d7d74e9a0115f32aa5435
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 188
+        height: 263
+      alignment: 9
+      pivot: {x: 0.5296765, y: 0.06966751}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 626e65bef562cba4ba14e47d2b683c44
+      internalID: 1304594028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_1
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 79
+        width: 133
+        height: 252
+      alignment: 9
+      pivot: {x: 0.6677948, y: 0.10465065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 867628542ab6dbe4e8d8d48d384f70d6
+      internalID: -1541108737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_2
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 82
+        width: 119
+        height: 252
+      alignment: 9
+      pivot: {x: 0.48660484, y: 0.044557482}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71a77ed88e35f8649a729ff0fb9e6689
+      internalID: -1148384439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_3
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 85
+        width: 164
+        height: 216
+      alignment: 9
+      pivot: {x: 0.4805603, y: 0.06458848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 778f710c6e9a14a4eb384cc54c256cdf
+      internalID: -365046257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_4
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 160
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c9b624b57f77443818e48e5f415a75
+      internalID: 2020540226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_5
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 82
+        width: 134
+        height: 238
+      alignment: 9
+      pivot: {x: 0.46431264, y: 0.044557523}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9e6c8ee76194a144b991dd4d77879be
+      internalID: -1819682815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_6
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 86
+        width: 100
+        height: 229
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be4363ccb97716a4c8017a43e3d8fd8b
+      internalID: 872433142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_7
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 91
+        width: 150
+        height: 235
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9024be86570b8d48b3b5663456ebc3e
+      internalID: 465606449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_8
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 81
+        width: 169
+        height: 272
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddfd19d00c070d44ba8d6320268adb31
+      internalID: -477829676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2302.i518.039.F.m005.c9.winter trees transparent set (1)_9
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 141
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8053fd97ca9690340a1d8fc643c400f7
+      internalID: -2078871440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 277a645bad75ee1438f1ff8f18c9147e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_0: 1304594028
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_1: -1541108737
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_2: -1148384439
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_3: -365046257
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_4: 2020540226
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_5: -1819682815
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_6: 872433142
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_7: 465606449
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_8: -477829676
+      2302.i518.039.F.m005.c9.winter trees transparent set (1)_9: -2078871440
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
