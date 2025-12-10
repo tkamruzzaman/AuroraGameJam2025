@@ -8,7 +8,7 @@ public class SnowFallManager : MonoBehaviour
     
     [SerializeField] List<ParticleSystem> fallingSnowParticles;
     [SerializeField] GameObject snowParticlesParent;
-
+    [SerializeField] float angleOffset = -30f;
     private void Awake()
     {
         Instance = this;

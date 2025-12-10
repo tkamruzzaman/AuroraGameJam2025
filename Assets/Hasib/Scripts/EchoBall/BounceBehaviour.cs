@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,6 +12,7 @@ public class BounceBehaviour : MonoBehaviour
     [SerializeField] private int bounceLimit;
     Rigidbody rb;
     Vector3 lastVelocity;
+    
   
     private void Awake()
     {
@@ -52,12 +54,19 @@ public class BounceBehaviour : MonoBehaviour
         }
         var speed = lastVelocity.magnitude;
         var normal = collision.contacts[0].normal;
-        var direction = Vector3.Reflect(lastVelocity.normalized, normal);
+        
+       
         Vector3 hitPosition = collision.contacts[0].point;
         //direction = direction + new Vector3(0f,collision.gameObject.GetComponent<Bounciness>().BounceAngle,0f);
     // Compare hit position with tree's position
         bool hitFromRight = hitPosition.x > transform.position.x;
         Bounciness bounciness = collision.gameObject.GetComponent<Bounciness>();
+        Vector3 direction = Vector3.Reflect(lastVelocity.normalized, normal);
+
+        // positive or negative
+
+// Rotate around Z axis
+        direction = Quaternion.AngleAxis(bounciness.BounceAngle, Vector3.forward) * direction;
         float bounce =bounciness .BounceSpeedMultiplier;
         snowOffset = hitFromRight? (0.5f*1): (0.5f*-1);
         bounciness.BounceTree(hitFromRight);
@@ -76,5 +85,12 @@ public class BounceBehaviour : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
+    public void FadeAndDestroy(float duration,Material mat)
+    {
+        Color c = mat.color;
+
+        mat.DOFade(0f, duration)
+            .OnComplete(() => Destroy(gameObject));
     }
 }
