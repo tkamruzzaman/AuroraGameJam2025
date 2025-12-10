@@ -131,7 +131,7 @@ public class Shoot : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
         transform.rotation =
             Quaternion.Lerp(aimIndicatorHolder.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        Debug.Log(transform.eulerAngles.z);
+       // Debug.Log(transform.eulerAngles.z);
     }
     
     
