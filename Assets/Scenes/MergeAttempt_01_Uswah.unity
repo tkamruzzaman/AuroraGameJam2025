@@ -7190,8 +7190,8 @@ Transform:
   - {fileID: 1423433166}
   - {fileID: 1754743294}
   - {fileID: 1156312658}
-  - {fileID: 769115577}
   - {fileID: 647521638}
+  - {fileID: 769115577}
   - {fileID: 2092935041}
   - {fileID: 1325420378}
   m_Father: {fileID: 0}
@@ -7216,6 +7216,7 @@ MonoBehaviour:
   targetTag: PathSphere
   foxtail: {fileID: 238861865}
   animationSpeed: 5
+  shootScript: {fileID: 798877667}
   connectedObjects:
   - {fileID: 633733353}
   - {fileID: 1870553036}
@@ -13268,7 +13269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2541852720352540079, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2920290371484044497, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
       propertyPath: m_LocalScale.x
