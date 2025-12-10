@@ -29715,7 +29715,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 0.49411768, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -44550,7 +44550,7 @@ GameObject:
   - component: {fileID: 7011301653879219117}
   - component: {fileID: 8921380407945697687}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Echo
   m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

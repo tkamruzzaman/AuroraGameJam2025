@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - bullet
   - Ground
+  - PathSphere
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - IgnoreLight
   - Water
   - UI
-  - 
+  - LightenedObjects
   - 
   - 
   - 
@@ -43,6 +44,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Aurora
+    uniqueID: 2880346653
     locked: 0
   m_RenderingLayers:
   - Default

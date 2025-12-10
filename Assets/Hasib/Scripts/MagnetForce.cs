@@ -3,10 +3,15 @@ using UnityEngine;
 
 public class MagnetForce : MonoBehaviour
 {
-    private bool isAlreadyActive;
+    public bool isAlreadyActive; // setting this parameter to public - Uswah
     [SerializeField] Renderer materialRenderer;
     [SerializeField] private float newIntensity;
     [SerializeField] private float intensityMultipler;
+    public static MagnetForce instance;
+    void OnEnable()
+    {
+        instance = this;
+    }
     private void Start ()
     {
         materialRenderer = GetComponent<Renderer>();

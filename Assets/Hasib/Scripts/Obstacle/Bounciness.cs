@@ -4,7 +4,7 @@ public class Bounciness : MonoBehaviour
 {
    [SerializeField] float bounceSpeedMultiplier=1f;
    public float BounceSpeedMultiplier => bounceSpeedMultiplier;
-   
+   public float BounceAngle;
    public float maxSwayAngle = 10f; // max rotation in degrees
     public float swingDuration = 1.5f; // duration for each sway
     public int oscillations = 2; // number of left-right swings

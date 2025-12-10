@@ -14,6 +14,7 @@ public class BulletMagnetizable : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         movement = GetComponent<EchoBallMovement>();
+        Destroy(gameObject,5f);
     }
     
 
