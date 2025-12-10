@@ -1035,7 +1035,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85660374, g: 0.85660374, b: 0.85660374, a: 1}
   m_Intensity: 0.5
   m_Range: 3.65
   m_SpotAngle: 30
@@ -7058,18 +7058,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AuroraPointsConnector
   lineRenderer: {fileID: 1912742086}
-  pointsToConnect:
-  - {fileID: 34876726}
-  - {fileID: 1870553037}
-  - {fileID: 633733354}
-  foxTailObject: {fileID: 238861865}
-  activateFoxTail: 0
-  animationDuration: 2
-  sphereCompletionRadius: 6
-  sphereTag: PathSphere
-  AuroraShader: {fileID: 1325420376}
-  highlightScale: 1.5
-  highlightColor: {r: 0.9752544, g: 0.9924528, b: 0.91193306, a: 1}
+  targetLayerRenderer:
+    serializedVersion: 2
+    m_Bits: 8
+  targetTag: PathSphere
+  connectedObjects:
+  - {fileID: 633733353}
+  - {fileID: 1870553036}
+  - {fileID: 34876725}
+  drawPositions: []
 --- !u!1 &1298931338
 GameObject:
   m_ObjectHideFlags: 0
@@ -13008,7 +13005,6 @@ LineRenderer:
   m_SortingOrder: 10
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 4.85, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1.1035904
@@ -13117,7 +13113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2541852720352540079, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2920290371484044497, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
       propertyPath: m_LocalScale.x
