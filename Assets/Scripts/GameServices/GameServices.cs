@@ -4,7 +4,6 @@ using UnityEngine;
 public class GameServices : MonoBehaviour
 {
     private static GameServices _instance;
-
     public static GameServices Instance
     {
         get
@@ -22,8 +21,10 @@ public class GameServices : MonoBehaviour
             return _instance;
         }
     }
-           public EventManager eventManager ;
-            public SceneNavigation sceneNavigation;
+    
+    public EventManager eventManager;
+    public SceneNavigation sceneNavigation;
+    public SoundManager soundManager;
 
 
     private void Awake()
@@ -42,12 +43,13 @@ public class GameServices : MonoBehaviour
         eventManager.FireGameServiceInitialized();
 
 
-        sceneNavigation = FindFirstObjectByType<SceneNavigation>();
+        sceneNavigation ??= FindFirstObjectByType<SceneNavigation>();
+        soundManager ??= FindFirstObjectByType<SoundManager>();
     }
 
     private void Start()
     {
-
+        soundManager.PlayBackgroundMusic();
     }
 
 
