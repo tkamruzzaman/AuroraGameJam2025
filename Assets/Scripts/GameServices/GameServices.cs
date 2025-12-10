@@ -24,7 +24,7 @@ public class GameServices : MonoBehaviour
     
     public EventManager eventManager;
     public SceneNavigation sceneNavigation;
-    public SoundManager soundManager;
+    public AudioManager audioManager;
 
 
     private void Awake()
@@ -44,12 +44,12 @@ public class GameServices : MonoBehaviour
 
 
         sceneNavigation ??= FindFirstObjectByType<SceneNavigation>();
-        soundManager ??= FindFirstObjectByType<SoundManager>();
+        audioManager ??= FindFirstObjectByType<AudioManager>();
     }
 
     private void Start()
     {
-        soundManager.PlayBackgroundMusic();
+        audioManager.PlayBackgroundMusic();
     }
 
 

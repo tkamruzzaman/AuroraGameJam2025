@@ -28,5 +28,6 @@ public class SceneNavigation : MonoBehaviour
 public enum Scenes
 {
     Menu = 0,
-    Game = 1,
+    Intro = 1,
+    Game = 2,
 }
