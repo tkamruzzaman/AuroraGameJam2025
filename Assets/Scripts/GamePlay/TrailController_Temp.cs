@@ -2,13 +2,6 @@ using UnityEngine;
 
 public class TrailController_Temp : MonoBehaviour
 {
-    [Tooltip("Distance from camera along its forward axis used when converting screen -> world")]
-    public float cameraDistance = 10f;
-
-    [Tooltip("If true, the object will smoothly follow the mouse")]
-    public bool smooth = true;
-    public float smoothSpeed = 15f;
-
     [Header("Y Position Ranges")]
     public Vector2 topYRange = new Vector2(10f, 3f);
     public Vector2 midYRange = new Vector2(3f, -8f);
@@ -64,23 +57,6 @@ public class TrailController_Temp : MonoBehaviour
 
     void Update()
     {
-        // Only move while left mouse button is pressed
-        if (Input.GetMouseButton(0))
-        {
-            var cam = Camera.main;
-            if (cam == null) return;
-
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = cameraDistance;
-
-            Vector3 target = cam.ScreenToWorldPoint(mousePos);
-
-            if (smooth)
-                transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * smoothSpeed);
-            else
-                transform.position = target;
-        }
-
         // Update particle color based on Y position
         UpdateParticleColor();
     }
@@ -96,6 +72,7 @@ public class TrailController_Temp : MonoBehaviour
         if (yPos >= midYRange.x)
         {
             // Top range
+            // InverseLerp maps yPos from the range (topYRange.x to topYRange.y) to a 0-1 value (t)
             t = Mathf.InverseLerp(topYRange.x, topYRange.y, yPos);
             newColor = topGradient.Evaluate(t);
         }

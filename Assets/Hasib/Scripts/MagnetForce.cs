@@ -1,55 +1,74 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MagnetForce : MonoBehaviour
 {
-    [SerializeField] float pullForce = 15f;     // Strength of the attraction
-    [SerializeField] float maxSpeed = 20f;      // Prevents bullets from flying too fast
-    bool canAttract = true;
-    private Collider otherGameObject;
+    public bool isAlreadyActive; // setting this parameter to public - Uswah
+    [SerializeField] Renderer materialRenderer;
+    [SerializeField] private float newIntensity;
+    [SerializeField] private float intensityMultipler;
+    public static MagnetForce instance;
+    void OnEnable()
+    {
+        instance = this;
+    }
+    private void Start ()
+    {
+        materialRenderer = GetComponent<Renderer>();
+       
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("SS"+other.gameObject.name);
-        if (other.gameObject.CompareTag("bullet"))
+        if (other.CompareTag("bullet") && !isAlreadyActive)
         {
-            canAttract = true;
-            otherGameObject = other;
+            BulletMagnetizable bm = other.GetComponent<BulletMagnetizable>();
+            if (bm != null)
+            {
+                     // ⛔ STOP original AddForce movement
+                bm.isBeingPulled = true;   // ✅ Start magnet pulling
+                bm.magnet = transform;
+                bm.StopOldMovement(); 
+            }
         }
     }
-
-    private void Update()
-    {
-        if (canAttract)
-        {
-            attractMagnet(otherGameObject);
-        }
-    }
-
-    void attractMagnet(Collider other)
-    {
-        Rigidbody rb = other.attachedRigidbody;
-        if (rb == null) return; // Only affect objects with Rigidbody
-
-        // Direction towards the magnet
-        Vector3 direction = (transform.position - rb.position).normalized;
-
-        // Apply force
-        rb.AddForce(direction * pullForce, ForceMode.Acceleration);
-
-        // Optional: clamp maximum speed so it doesn't overshoot
-        if (rb.linearVelocity.magnitude > maxSpeed)
-        {
-            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
-        }
-    }
-
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("bullet"))
+        if (other.gameObject.CompareTag("bullet")&& !isAlreadyActive)
         {
-            Destroy(other.gameObject);
+            
+            isAlreadyActive = true;
+            DisableColliders();
+            ChangeColor();
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;  
+            Destroy(other.gameObject,5f);
+        }
+        
+    }
+
+    void ChangeColor()
+    {
+        materialRenderer.material.EnableKeyword("_EMISSION");
+        Color currentEmission = materialRenderer.material.GetColor("_EmissionColor");
+
+        // Convert to color + intensity
+        float currentIntensity = Mathf.Max(currentEmission.r, currentEmission.g, currentEmission.b);
+        Color baseColor = currentEmission / currentIntensity;
+
+        // Apply new intensity while keeping color
+        Color newEmission = baseColor * newIntensity*intensityMultipler;
+        materialRenderer.material.SetColor("_EmissionColor", newEmission);
+    }
+
+    void DisableColliders()
+    {
+        SphereCollider[] colliders = GetComponents<SphereCollider>();
+
+
+        foreach (SphereCollider col in colliders)
+        {
+            col.enabled = false;
         }
     }
 }

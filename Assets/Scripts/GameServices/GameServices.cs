@@ -1,16 +1,16 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(-100)]
 public class GameServices : MonoBehaviour
 {
     private static GameServices _instance;
-
     public static GameServices Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<GameServices>();
+                _instance = FindFirstObjectByType<GameServices>();
                 if (_instance == null)
                 {
                     GameObject singletonObject = new GameObject("GameServices");
@@ -21,6 +21,11 @@ public class GameServices : MonoBehaviour
             return _instance;
         }
     }
+    
+    public EventManager eventManager;
+    public SceneNavigation sceneNavigation;
+    public SoundManager soundManager;
+
 
     private void Awake()
     {
@@ -33,7 +38,19 @@ public class GameServices : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        eventManager = new EventManager();
+
+        eventManager.FireGameServiceInitialized();
+
+
+        sceneNavigation ??= FindFirstObjectByType<SceneNavigation>();
+        soundManager ??= FindFirstObjectByType<SoundManager>();
     }
 
-    // Add your game service methods and properties here
+    private void Start()
+    {
+        soundManager.PlayBackgroundMusic();
+    }
+
+
 }
