@@ -22,6 +22,11 @@ public class BounceBehaviour : MonoBehaviour
     private void Update()
     {
         lastVelocity = rb.linearVelocity;
+        if (rb.linearVelocity.magnitude < 1f)
+        {
+            Destroy(this.gameObject);    
+        }
+        
     }
 
     // private void OnCollisionEnter(Collision collision)

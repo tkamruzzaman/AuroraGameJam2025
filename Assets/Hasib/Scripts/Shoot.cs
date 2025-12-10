@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 
 public class Shoot : MonoBehaviour
 {
+    public static bool HasClearView = true;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform player;
     [SerializeField] private float bulletForce = 10f;
@@ -93,7 +94,7 @@ public class Shoot : MonoBehaviour
 
     bool AngleCheck(float angle)
     {
-        if ((angle >= 100 && angle <= 170)||(angle >= 20 && angle <= 70))
+        if ((angle >= 100 && angle <= 170)||(angle >= 20 && angle <= 70) && HasClearView)
         {
             aimIndicatorSprite.color = Color.green;
             return true ;
