@@ -7,6 +7,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.replay.aurora": {
+      "version": "https://github.com/Sayuris1/UnityURPAurora.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8b4c6646d911a282662c74bf8e3ea3c04e2b1fc3"
+    },
     "com.unity.2d.animation": {
       "version": "12.0.3",
       "depth": 1,
