@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Collections; 
 
 public class AuroraPointsConnector : MonoBehaviour
 {
@@ -8,7 +9,12 @@ public class AuroraPointsConnector : MonoBehaviour
     public LayerMask targetLayerRenderer;
     
     [Header("Target Configuration")]
-    public string targetTag = "ConnectionPoint"; 
+    public Vector3 foxtailOffset = new Vector3(0f, 0.5f, 0f); 
+    public string targetTag = "PathSphere"; 
+    
+    [Header("Animation")]
+    public GameObject foxtail; 
+    public float animationSpeed = 5f; 
     
     private Camera mainCamera;
     private bool _isDrawing;
@@ -20,19 +26,27 @@ public class AuroraPointsConnector : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
+        
         lineRenderer.gameObject.SetActive(false);
         lineRenderer.positionCount = 0;
 
-        // Determine the total number of required targets ONCE at startup
         GameObject[] allTargets = GameObject.FindGameObjectsWithTag(targetTag);
         requiredTargetCount = allTargets.Length;
+        
+        if (foxtail != null)
+        {
+            if (allTargets.Length > 0)
+            {
+                foxtail.transform.position = allTargets[0].transform.position + foxtailOffset; 
+            }
+            foxtail.SetActive(false);
+        }
         
         Debug.Log($"Total required connection targets found: {requiredTargetCount}.");
     }
 
     private void Update()
     {
-        // === MOUSE DOWN (Start Drawing) ===
         if (Input.GetMouseButtonDown(0))
         {
             if (!_isDrawing && lineRenderer.gameObject.activeSelf)
@@ -55,7 +69,6 @@ public class AuroraPointsConnector : MonoBehaviour
             }
         }
 
-        // === MOUSE HELD (Continue Connecting Points - Allows Reconnection) ===
         if (Input.GetMouseButton(0) && _isDrawing)
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -65,8 +78,6 @@ public class AuroraPointsConnector : MonoBehaviour
 
                 if (hitObject.CompareTag(targetTag))
                 {
-                    // If the hit object is different from the LAST connected object, add it.
-                    // This allows any re-connection (including back to the start) but prevents spamming the list.
                     if (connectedObjects.Count == 0 || hitObject != connectedObjects.Last())
                     {
                         connectedObjects.Add(hitObject);
@@ -78,7 +89,6 @@ public class AuroraPointsConnector : MonoBehaviour
 
         DrawLine(); 
 
-        // === MOUSE UP (Stop Drawing/Validation Check) ===
         if (Input.GetMouseButtonUp(0) && _isDrawing)
         {
             _isDrawing = false;
@@ -86,7 +96,7 @@ public class AuroraPointsConnector : MonoBehaviour
             if (CheckForCompleteConnection())
             {
                 Debug.Log("🎉 Successful Aurora Connection! All unique spheres connected.");
-                HandleSuccessfulConnection();
+                HandleSuccessfulConnection(); 
             }
             else
             {
@@ -96,11 +106,8 @@ public class AuroraPointsConnector : MonoBehaviour
         }
     }
     
-    // --- Utility Methods ---
-
     private bool CheckForCompleteConnection()
     {
-        // Success: The number of unique objects visited equals the total required count.
         return connectedObjects.Distinct().Count() == requiredTargetCount;
     }
 
@@ -108,7 +115,6 @@ public class AuroraPointsConnector : MonoBehaviour
     {
         _isDrawing = false; 
 
-        // Finalize the line (Remove the segment that was leading to the cursor)
         drawPositions.Clear();
         foreach (var obj in connectedObjects)
         {
@@ -117,7 +123,14 @@ public class AuroraPointsConnector : MonoBehaviour
         lineRenderer.positionCount = drawPositions.Count;
         lineRenderer.SetPositions(drawPositions.ToArray());
         
-        Debug.Log("PERFORMING ACTION: Line kept active, now triggering game event/handle.");
+        if (foxtail != null && drawPositions.Count > 1)
+        {
+            StartCoroutine(AnimateFoxtailAlongPath(drawPositions));
+        }
+        else
+        {
+             Debug.Log("PERFORMING ACTION: Line kept active, no foxtail to animate.");
+        }
     }
 
     private void ResetConnection(bool shouldClearLine)
@@ -131,13 +144,16 @@ public class AuroraPointsConnector : MonoBehaviour
             lineRenderer.positionCount = 0;
             lineRenderer.gameObject.SetActive(false);
         }
+        
+        if (foxtail != null)
+        {
+            StopAllCoroutines(); 
+            foxtail.SetActive(false);
+        }
     }
 
-    // --- Drawing Methods ---
-    
     public void DrawLine()
     {
-        // Stop drawing if the mouse is up or we are not in the drawing state
         if (!Input.GetMouseButton(0) || !_isDrawing || connectedObjects.Count == 0)
         {
             return;
@@ -150,7 +166,6 @@ public class AuroraPointsConnector : MonoBehaviour
             drawPositions.Add(obj.transform.position);
         }
 
-        // Add the current cursor position
         Vector3 inputDrawPosition = GetMouseWorldPosition();
         drawPositions.Add(inputDrawPosition);
 
@@ -162,5 +177,37 @@ public class AuroraPointsConnector : MonoBehaviour
     {
         var targetInputPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
         return targetInputPos;
+    }
+    
+    private IEnumerator AnimateFoxtailAlongPath(List<Vector3> path)
+    {
+        foxtail.SetActive(true);
+        foxtail.transform.position = path[0] + foxtailOffset; 
+
+        for (int i = 0; i < path.Count - 1; i++)
+        {
+            Vector3 startPoint = path[i];
+            Vector3 endPoint = path[i + 1];
+            
+            float segmentDistance = Vector3.Distance(startPoint, endPoint);
+            float duration = segmentDistance / animationSpeed; 
+            float timeElapsed = 0f;
+            
+            while (timeElapsed < duration)
+            {
+                float t = timeElapsed / duration;
+                
+                Vector3 currentPosition = Vector3.Lerp(startPoint, endPoint, t);
+                
+                foxtail.transform.position = currentPosition + foxtailOffset;
+                
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            foxtail.transform.position = endPoint + foxtailOffset;
+        }
+
+        Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
     }
 }
