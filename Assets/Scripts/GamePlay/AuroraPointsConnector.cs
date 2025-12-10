@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -5,9 +6,14 @@ using System.Collections;
 
 public class AuroraPointsConnector : MonoBehaviour
 {
+    public static AuroraPointsConnector Instance;
     public LineRenderer lineRenderer;
     public LayerMask targetLayerRenderer;
-    
+    [SerializeField] private Shoot shoot;
+
+    [SerializeField] private GameObject player;
+    [SerializeField]
+    bool IsAllPointActive;
     [Header("Target Configuration")]
     public Vector3 foxtailOffset = new Vector3(0f, 0.5f, 0f); 
     public string targetTag = "PathSphere"; 
@@ -15,7 +21,6 @@ public class AuroraPointsConnector : MonoBehaviour
     [Header("Animation")]
     public GameObject foxtail; 
     public float animationSpeed = 5f; 
-    public Shoot shootScript;
     
     private Camera mainCamera;
     private bool _isDrawing;
@@ -24,6 +29,24 @@ public class AuroraPointsConnector : MonoBehaviour
     public List<GameObject> connectedObjects = new List<GameObject>();
     public List<Vector3> drawPositions = new List<Vector3>();
 
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void CheckIfAllActive()
+    {
+        foreach (GameObject go in connectedObjects)
+        {
+            if (!go.GetComponent<MagnetForce>().isAlreadyActive)
+            {
+                return;
+            }
+        }
+
+        IsAllPointActive = true;
+    }
     private void Start()
     {
         mainCamera = Camera.main;
@@ -31,15 +54,14 @@ public class AuroraPointsConnector : MonoBehaviour
         lineRenderer.gameObject.SetActive(false);
         lineRenderer.positionCount = 0;
 
-       MagnetForce[] allMagnetTargets = FindObjectsByType<MagnetForce>(FindObjectsSortMode.None);
-        requiredTargetCount = allMagnetTargets.Length;
+        GameObject[] allTargets = GameObject.FindGameObjectsWithTag(targetTag);
+        requiredTargetCount = allTargets.Length;
         
-       if (foxtail != null)
+        if (foxtail != null)
         {
-            if (requiredTargetCount > 0)
+            if (allTargets.Length > 0)
             {
-                // We assume the first found target is acceptable for initial positioning
-                foxtail.transform.position = allMagnetTargets[0].transform.position + foxtailOffset; 
+                foxtail.transform.position = allTargets[0].transform.position + foxtailOffset; 
             }
             foxtail.SetActive(false);
         }
@@ -49,123 +71,74 @@ public class AuroraPointsConnector : MonoBehaviour
 
     private void Update()
     {
-        bool isDrawConditionMet = AllPointsConnectedAction(); 
+   
 
-        if (isDrawConditionMet)
+        if (IsAllPointActive)
         {
-            Cursor.lockState = CursorLockMode.None; 
+        //     player.SetActive(false);
+         shoot.enabled = false;
             Cursor.visible = true;
-            shootScript.gameObject.SetActive(false); //deactivate script only 
-
-            if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!_isDrawing && lineRenderer.gameObject.activeSelf)
             {
-                lineRenderer.gameObject.SetActive(true); 
-
-                print("0");
-                if (!_isDrawing && lineRenderer.gameObject.activeSelf)
-                {
-                    print("1");
-                    ResetConnection(shouldClearLine: true); 
-                }
-                
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-                
-                if (Physics.Raycast(ray, out var raycastHit, maxDistance: 300, (int)targetLayerRenderer))
-                {
-                    print("2");
-                    var hitObject = raycastHit.transform.gameObject;
-
-                    if (hitObject.CompareTag(targetTag))
-                    {
-                        print("3");
-                        _isDrawing = true;
-                        connectedObjects.Clear(); 
-                        connectedObjects.Add(hitObject); 
-                        // lineRenderer.gameObject.SetActive(true); 
-                    }
-                }
+                ResetConnection(shouldClearLine: true);
             }
 
-            if (Input.GetMouseButton(0) && _isDrawing)
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var raycastHit, Mathf.Infinity, (int)targetLayerRenderer))
             {
-                print("4");
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-                
-                if (Physics.Raycast(ray, out var raycastHit , maxDistance: 300, (int)targetLayerRenderer))
-                {
-                    print("5");
-                    var hitObject = raycastHit.collider.gameObject;
+                var hitObject = raycastHit.transform.gameObject;
 
-                    if (hitObject.CompareTag(targetTag))
-                    {
-                        print("6");
-                        if (connectedObjects.Count == 0 || hitObject != connectedObjects.Last())
-                        {
-                            print("7");
-                            connectedObjects.Add(hitObject);
-                            Debug.Log($"Connected to sphere: {hitObject.name}. List size: {connectedObjects.Count}");
-                        }
-                    }
-                }
-            }
-            
-            DrawLine(); 
-
-            if (Input.GetMouseButtonUp(0) && _isDrawing)
-            {
-                print("8");
-                _isDrawing = false; 
-                
-                if (CheckForCompleteConnection())
+                if (hitObject.CompareTag(targetTag))
                 {
-                    Debug.Log("🎉 Successful Aurora Connection! All unique spheres connected.");
-                    HandleSuccessfulConnection(); 
-                }
-                else
-                {
-                    Debug.Log($"Connection failed. Visited {connectedObjects.Distinct().Count()} out of {requiredTargetCount} unique targets.");
-                    ResetConnection(shouldClearLine: true); 
+                    _isDrawing = true;
+                    connectedObjects.Clear();
+                    connectedObjects.Add(hitObject);
+                    lineRenderer.gameObject.SetActive(true);
                 }
             }
         }
-        else
+
+        if (Input.GetMouseButton(0) && _isDrawing)
         {
-            if (_isDrawing || lineRenderer.gameObject.activeSelf)
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var raycastHit, Mathf.Infinity, (int)targetLayerRenderer))
             {
-                print("9");
+                var hitObject = raycastHit.collider.gameObject;
+
+                if (hitObject.CompareTag(targetTag))
+                {
+                    if (connectedObjects.Count == 0 || hitObject != connectedObjects.Last())
+                    {
+                        connectedObjects.Add(hitObject);
+                        Debug.Log($"Connected to sphere: {hitObject.name}. List size: {connectedObjects.Count}");
+                    }
+                }
+            }
+        }
+
+        DrawLine();
+
+        if (Input.GetMouseButtonUp(0) && _isDrawing)
+        {
+            _isDrawing = false;
+
+            if (CheckForCompleteConnection())
+            {
+                Debug.Log("🎉 Successful Aurora Connection! All unique spheres connected.");
+                HandleSuccessfulConnection();
+            }
+            else
+            {
+                Debug.Log(
+                    $"Connection failed. Visited {connectedObjects.Distinct().Count()} out of {requiredTargetCount} unique targets.");
                 ResetConnection(shouldClearLine: true);
             }
         }
     }
+}
     
-   public bool AllPointsConnectedAction()
-    {
-        MagnetForce[] allTargets = FindObjectsByType<MagnetForce>(FindObjectsSortMode.None);
-        
-        // Check if the current required count matches the number of objects we just found.
-        // This is a safety check, normally they should match unless objects are created/destroyed dynamically.
-        if (allTargets.Length != requiredTargetCount)
-        {
-             // If this happens, you should re-evaluate requiredTargetCount
-             requiredTargetCount = allTargets.Length;
-        }
-        
-        foreach (MagnetForce mf in allTargets)
-        {
-            // Note: We don't need a null check here because FindObjectsOfType only returns 
-            // active components, but we check the property.
-            
-            if (!mf.isAlreadyActive)
-            {
-                // Debug.Log($"AllPointsConnectedAction: Condition failed because {mf.gameObject.name} has isAlreadyActive = FALSE. Drawing disabled.");
-                return false;
-            }
-        }
-        
-        // If the array is empty (requiredTargetCount=0) this will return true, but input is already disabled.
-        return true;
-    }
-
     private bool CheckForCompleteConnection()
     {
         return connectedObjects.Distinct().Count() == requiredTargetCount;
