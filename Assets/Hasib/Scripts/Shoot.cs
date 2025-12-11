@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Unity.Cinemachine;
+
 
 public class Shoot : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject playerArt;
     private Vector3 mouseWorld;
     [SerializeField]  public static int currentBulletCount=0;
+    public CinemachineCamera cinemachineCamera;
+
     private void Awake()
     {
         
@@ -47,6 +51,8 @@ public class Shoot : MonoBehaviour
             currentBulletCount++;
             // Direction to mouse
             Vector3 dir = mouseWorld - spawnPos;
+            cinemachineCamera.gameObject.SetActive(true);
+            cinemachineCamera.Follow = bullet.transform;
             MoveBullet(dir, bullet);
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Collections; 
+using Unity.Cinemachine;
 
 public class AuroraPointsConnector : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class AuroraPointsConnector : MonoBehaviour
     
     public List<GameObject> connectedObjects = new List<GameObject>();
     public List<Vector3> drawPositions = new List<Vector3>();
-
+    public CinemachineCamera cinemachineCamera;
 
     private void Awake()
     {
@@ -67,6 +68,7 @@ public class AuroraPointsConnector : MonoBehaviour
         }
         
         Debug.Log($"Total required connection targets found: {requiredTargetCount}.");
+        cinemachineCamera.Follow = player.transform;
     }
 
     private void Update()
