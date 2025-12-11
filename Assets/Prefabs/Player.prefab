@@ -52,6 +52,7 @@ MonoBehaviour:
   playerRigidbody: {fileID: 7819863587334180741}
   playerCollider: {fileID: 3359292238452648108}
   playerAnimator: {fileID: 8352710262319544998}
+  playerArt: {fileID: 6346335649228596934}
   InputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!50 &7819863587334180741
 Rigidbody2D:

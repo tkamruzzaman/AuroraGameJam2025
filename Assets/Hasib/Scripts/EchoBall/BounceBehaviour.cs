@@ -22,10 +22,10 @@ public class BounceBehaviour : MonoBehaviour
     private void Update()
     {
         lastVelocity = rb.linearVelocity;
-        if (rb.linearVelocity.magnitude < 1f)
-        {
-            Destroy(this.gameObject);    
-        }
+        // if (rb.linearVelocity.magnitude < 1f)
+        // {
+        //     Destroy(this.gameObject);    
+        // }
         
     }
 
@@ -54,6 +54,8 @@ public class BounceBehaviour : MonoBehaviour
        
         if (!collision.gameObject.CompareTag("Obstacle")) return;
         _bounceCount++;
+        GameServices.Instance.audioManager.PlayEchoSound(GameServices.Instance.audioManager.callingAnimartionClip,1f,_bounceCount);
+        
         if (_bounceCount > bounceLimit)
         {
             Shoot.currentBulletCount--;
