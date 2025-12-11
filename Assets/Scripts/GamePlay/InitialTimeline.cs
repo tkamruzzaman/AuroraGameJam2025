@@ -7,6 +7,7 @@ public class InitialTimeline : MonoBehaviour
 {
     public Player playerScript;
     public GameObject rotatePoint;
+    public GameObject Orb;
     public PlayableDirector playableDirectorController;
     public CinemachineCamera cinemachineCamera;
 
@@ -48,6 +49,7 @@ public class InitialTimeline : MonoBehaviour
     print("TimelineEnded");
     SwitchOnOffObjects(true);
     cinemachineCamera.Follow = playerScript.transform;
+    Orb.SetActive(false);
     this.gameObject.SetActive(false);
      print("TimelineEnded");
 }
