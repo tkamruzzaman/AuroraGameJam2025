@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections; 
 using Unity.Cinemachine;
+using DG.Tweening;
 
 public class AuroraPointsConnector : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class AuroraPointsConnector : MonoBehaviour
     public LineRenderer lineRenderer;
     public LayerMask targetLayerRenderer;
     [SerializeField] private Shoot shoot;
+    public static event Action OnAuroraConnectionComplete;
 
     [SerializeField] private GameObject player;
     [SerializeField]
@@ -30,6 +32,7 @@ public class AuroraPointsConnector : MonoBehaviour
     public List<GameObject> connectedObjects = new List<GameObject>();
     public List<Vector3> drawPositions = new List<Vector3>();
     public CinemachineCamera cinemachineCamera;
+    public GameObject AuroraShader;
 
     private void Awake()
     {
@@ -145,11 +148,10 @@ public class AuroraPointsConnector : MonoBehaviour
     {
         return connectedObjects.Distinct().Count() == requiredTargetCount;
     }
-
     private void HandleSuccessfulConnection()
     {
         _isDrawing = false; 
-
+OnAuroraConnectionComplete?.Invoke();
         drawPositions.Clear();
         foreach (var obj in connectedObjects)
         {
@@ -160,6 +162,7 @@ public class AuroraPointsConnector : MonoBehaviour
         
         if (foxtail != null && drawPositions.Count > 1)
         {
+            OnAuroraConnectionComplete?.Invoke();//turn on the cinemachine camera
             StartCoroutine(AnimateFoxtailAlongPath(drawPositions));
         }
         else
@@ -213,36 +216,84 @@ public class AuroraPointsConnector : MonoBehaviour
         var targetInputPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
         return targetInputPos;
     }
-    
     private IEnumerator AnimateFoxtailAlongPath(List<Vector3> path)
+{
+    foxtail.SetActive(true);
+    foxtail.transform.position = path[0] + foxtailOffset; 
+
+    for (int i = 0; i < path.Count - 1; i++)
     {
-        foxtail.SetActive(true);
-        foxtail.transform.position = path[0] + foxtailOffset; 
-
-        for (int i = 0; i < path.Count - 1; i++)
+        Vector3 startPoint = path[i];
+        Vector3 endPoint = path[i + 1];
+        
+        // --- Calculate the movement direction vector ---
+        Vector3 movementDirection = (endPoint - startPoint).normalized;
+        
+        // --- Calculate the target rotation ---
+        // This creates a rotation that looks along the movementDirection.
+        // If your model's forward axis is NOT the Z-axis in local space, 
+        // you might need to adjust the rotation, but try this standard approach first.
+        if (movementDirection != Vector3.zero)
         {
-            Vector3 startPoint = path[i];
-            Vector3 endPoint = path[i + 1];
+            foxtail.transform.rotation = Quaternion.LookRotation(movementDirection);
+        }
+        // If the foxtail's forward axis is the LOCAL X-axis, and not the local Z-axis (default for LookRotation),
+        // you might need to use:
+        // foxtail.transform.rotation = Quaternion.LookRotation(movementDirection) * Quaternion.Euler(0, -90, 0); 
+        // (or some other adjustment like +90 or 180 on a different axis)
+        // Try the simple one first and see which way the foxtail points!
+        
+        float segmentDistance = Vector3.Distance(startPoint, endPoint);
+        float duration = segmentDistance / animationSpeed; 
+        float timeElapsed = 0f;
+        
+        while (timeElapsed < duration)
+        {
+            float t = timeElapsed / duration;
             
-            float segmentDistance = Vector3.Distance(startPoint, endPoint);
-            float duration = segmentDistance / animationSpeed; 
-            float timeElapsed = 0f;
+            Vector3 currentPosition = Vector3.Lerp(startPoint, endPoint, t);
             
-            while (timeElapsed < duration)
-            {
-                float t = timeElapsed / duration;
-                
-                Vector3 currentPosition = Vector3.Lerp(startPoint, endPoint, t);
-                
-                foxtail.transform.position = currentPosition + foxtailOffset;
-                
-                timeElapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            foxtail.transform.position = endPoint + foxtailOffset;
+            foxtail.transform.position = currentPosition + foxtailOffset;
+            
+            timeElapsed += Time.deltaTime;
+            yield return null;
         }
 
-        Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
+        foxtail.transform.position = endPoint + foxtailOffset;
     }
+
+    Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
+    FadeIn(AuroraShader, 7);
+}
+    void EndThePointsConnection()
+    {
+        connectedObjects.Clear();
+        lineRenderer.positionCount = 0;
+        lineRenderer.gameObject.SetActive(false);
+        foxtail.SetActive(false);
+    }
+public void FadeIn(GameObject plane, float duration)
+{
+    EndThePointsConnection();
+    AuroraShader.SetActive(true);
+    Material material = plane.GetComponent<Renderer>().material;
+    
+    // Set material to transparent mode
+    material.SetFloat("_Mode", 3);
+    material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+    material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+    material.SetInt("_ZWrite", 0);
+    material.DisableKeyword("_ALPHATEST_ON");
+    material.EnableKeyword("_ALPHABLEND_ON");
+    material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+    material.renderQueue = 3000;
+    
+    // Start invisible
+    Color color = material.color;
+    color.a = 0f;
+    material.color = color;
+    
+    // Fade in
+    material.DOFade(1f, duration);
+}
 }

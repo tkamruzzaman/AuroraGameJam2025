@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System;
+using UnityEngine.Serialization;
 public class BulletMagnetizable : MonoBehaviour
 {
     public bool isBeingPulled = false;
@@ -10,14 +11,20 @@ public class BulletMagnetizable : MonoBehaviour
     [SerializeField] float bulletDuration = 20f;
 
     private Rigidbody rb;
-
+public static event Action OnBulletDestroyed;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         movement = GetComponent<EchoBallMovement>();
-        Destroy(gameObject,20f);
+        Invoke("DestroyBullet", 3);
     }
     
+    void DestroyBullet()
+    {
+        //OnBulletDestroyed?.Invoke();
+        Destroy(gameObject);//reducing the time.. Uswah
+        
+    }
 
     void Update()
     {
