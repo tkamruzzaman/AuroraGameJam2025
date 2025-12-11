@@ -2,14 +2,16 @@ using UnityEngine;
 using System;
 using System.Collections;
 using Unity.Cinemachine;
-
+using UnityEngine.Playables;
 
 public class MainGameplayCameraControllers : MonoBehaviour
 {
     public Transform player;
-    public Transform CurrentEcho;
-public CinemachineCamera WalkingCamera;
-public CinemachineCamera BulletShootCamera;
+    public Transform Fox;
+    public CinemachineCamera WalkingCamera;
+    public CinemachineCamera BulletShootCamera;
+    public CinemachineCamera FoxFollowCamera;
+    public GameObject FoxTimeline;
     private Transform Echo;
     //CurrentEcho == bullet
     //cinemachine..f
@@ -19,6 +21,7 @@ public CinemachineCamera BulletShootCamera;
         Player.OnPlayerWalking += WalkingIdleCamera;
         //BulletMagnetizable.OnBulletDestroyed += WalkingIdleCamera;
         //MagnetForce.OnMagneticStartActivation += BulletShoot;
+        AuroraPointsConnector.OnAuroraConnectionComplete += BulletShoot;
     }
     void OnDisable()
     {
@@ -26,7 +29,18 @@ public CinemachineCamera BulletShootCamera;
         Player.OnPlayerWalking -= WalkingIdleCamera;
         //BulletMagnetizable.OnBulletDestroyed -= BulletShoot;
         //MagnetForce.OnMagneticStartActivation -= BulletShoot;
+        AuroraPointsConnector.OnAuroraConnectionComplete -= BulletShoot;
 
+
+    }
+    void FoxFollowCamerShot()
+    {
+        WalkingCamera.gameObject.SetActive(false);
+        BulletShootCamera.gameObject.SetActive(false);
+        //FoxFollowCamera.gameObject.SetActive(true);
+       // FoxTimeline.SetActive(true);
+        FoxFollowCamera.Follow = Fox;
+        //FoxTimeline.GetComponent<PlayableDirector>().Play();
     }
     void WalkingIdleCamera()
     {
