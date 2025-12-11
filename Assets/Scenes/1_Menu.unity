@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8231685, g: 1, b: 0.75, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -661,7 +661,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 800}
+  m_SizeDelta: {x: 1600, y: 880}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &392716170
 GameObject:
@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8231685, g: 1, b: 0.75, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1701,7 +1701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 283}
+  m_AnchoredPosition: {x: 0, y: 320}
   m_SizeDelta: {x: 466.6014, y: 106.3543}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091231625
@@ -2176,11 +2176,11 @@ RectTransform:
   - {fileID: 761458247}
   m_Father: {fileID: 334029244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 531.29504, y: 344.77}
-  m_SizeDelta: {x: 137.3998, y: 110.4593}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -15, y: -15}
+  m_SizeDelta: {x: 150, y: 110}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1714804264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2477,8 +2477,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -47}
-  m_SizeDelta: {x: 1009.9144, y: 396.3269}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 1476.4, y: 563}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1947827405
 MonoBehaviour:
@@ -2500,8 +2500,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Chimex - 3D Art\nFaranak - 2D Art\nHasib - Gameplay Programmer\nPrashik
-    - Producer\nTusher - UI \nUswah - Gameplay Programmer\n"
+  m_text: 'Faranak Khodakarami - 2D Artist, Concept Artist, Narrative Designer
+
+    Hasibul
+    Hasan - Lead Gameplay Programmer, Game Designer
+
+    Md Kamruzzaman Tusher -
+    Game Architecture, UI, Polish
+
+    Prashik Sanjaykumar Chavan - Producer, Level
+    Designer, Game Designer
+
+    Samuel Chimezie Okeke - 3D Character Artist, 3D
+    Props Artist
+
+    Uswah Saeed - Gameplay Programmer, Visual Effects, Game Designer'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b51a31cca0de54664ac699e39f987392, type: 2}
   m_sharedMaterial: {fileID: 3926770722635739950, guid: b51a31cca0de54664ac699e39f987392, type: 2}
@@ -2528,13 +2541,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 42.5
+  m_fontSizeBase: 42.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 33
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2545,7 +2558,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 0
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2677,7 +2690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8231685, g: 1, b: 0.75, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
