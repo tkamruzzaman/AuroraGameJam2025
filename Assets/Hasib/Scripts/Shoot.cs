@@ -18,11 +18,13 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject playerArt;
     private Vector3 mouseWorld;
     [SerializeField]  public static int currentBulletCount=0;
-    public CinemachineCamera cinemachineCamera;
-
+    // public CinemachineCamera cinemachineCamera;
+    public static event Action OnBulletSpawned;
+    public static Shoot Instance;
+    public GameObject bullet;
     private void Awake()
     {
-        
+        Instance = this;
         // Cursor.visible = false;
         // Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -47,12 +49,13 @@ public class Shoot : MonoBehaviour
 
             // Spawn bullet at player's Z plane
             Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, planeZ);
-            GameObject bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
             currentBulletCount++;
             // Direction to mouse
             Vector3 dir = mouseWorld - spawnPos;
-            cinemachineCamera.gameObject.SetActive(true);
-            cinemachineCamera.Follow = bullet.transform;
+            // cinemachineCamera.gameObject.SetActive(true);
+            // cinemachineCamera.Follow = bullet.transform;
+            OnBulletSpawned?.Invoke();
             MoveBullet(dir, bullet);
         }
     }
