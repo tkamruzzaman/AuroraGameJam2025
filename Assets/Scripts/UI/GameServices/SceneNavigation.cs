@@ -30,4 +30,5 @@ public enum Scenes
     Menu = 0,
     Intro = 1,
     Game = 2,
+    End = 3,
 }
