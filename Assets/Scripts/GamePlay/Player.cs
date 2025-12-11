@@ -51,7 +51,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Movement();
+        if (!Shoot.isShooting)
+        {
+            Movement();
+        }
+     
 
         if (jumpAction.WasPressedThisFrame())
         {
