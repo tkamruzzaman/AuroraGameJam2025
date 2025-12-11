@@ -1,73 +1,246 @@
+using System;
 using System.Collections.Generic;
-using System; 
 using UnityEngine;
+using System.Linq;
+using System.Collections; 
 
 public class AuroraPointsConnector : MonoBehaviour
 {
+    public static AuroraPointsConnector Instance;
     public LineRenderer lineRenderer;
     public LayerMask targetLayerRenderer;
+    [SerializeField] private Shoot shoot;
+
+    [SerializeField] private GameObject player;
+    [SerializeField]
+    bool IsAllPointActive;
+    [Header("Target Configuration")]
+    public Vector3 foxtailOffset = new Vector3(0f, 0.5f, 0f); 
+    public string targetTag = "PathSphere"; 
+    
+    [Header("Animation")]
+    public GameObject foxtail; 
+    public float animationSpeed = 5f; 
+    
     private Camera mainCamera;
     private bool _isDrawing;
+    private int requiredTargetCount; 
+    
     public List<GameObject> connectedObjects = new List<GameObject>();
     public List<Vector3> drawPositions = new List<Vector3>();
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void CheckIfAllActive()
+    {
+        foreach (GameObject go in connectedObjects)
+        {
+            if (!go.GetComponent<MagnetForce>().isAlreadyActive)
+            {
+                return;
+            }
+        }
+
+        IsAllPointActive = true;
+    }
     private void Start()
     {
         mainCamera = Camera.main;
-        //lineRenderer.positionCount = 0;
-        //check
+        
+        lineRenderer.gameObject.SetActive(false);
+        lineRenderer.positionCount = 0;
+
+        GameObject[] allTargets = GameObject.FindGameObjectsWithTag(targetTag);
+        requiredTargetCount = allTargets.Length;
+        
+        if (foxtail != null)
+        {
+            if (allTargets.Length > 0)
+            {
+                foxtail.transform.position = allTargets[0].transform.position + foxtailOffset; 
+            }
+            foxtail.SetActive(false);
+        }
+        
+        Debug.Log($"Total required connection targets found: {requiredTargetCount}.");
     }
+
     private void Update()
     {
+   
+
+        if (IsAllPointActive)
+        {
+        //     player.SetActive(false);
+         shoot.enabled = false;
+            Cursor.visible = true;
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out var raycastHit,maxDistance: 100f, (int)targetLayerRenderer))
+            if (!_isDrawing && lineRenderer.gameObject.activeSelf)
             {
-                _isDrawing = true;
-                connectedObjects.Add(raycastHit.transform.gameObject);
-                lineRenderer.gameObject.SetActive(true);
+                ResetConnection(shouldClearLine: true);
+            }
+
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var raycastHit, Mathf.Infinity, (int)targetLayerRenderer))
+            {
+                var hitObject = raycastHit.transform.gameObject;
+
+                if (hitObject.CompareTag(targetTag))
+                {
+                    _isDrawing = true;
+                    connectedObjects.Clear();
+                    connectedObjects.Add(hitObject);
+                    lineRenderer.gameObject.SetActive(true);
+                }
             }
         }
 
         if (Input.GetMouseButton(0) && _isDrawing)
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out var raycastHit , maxDistance: 100f, (int)targetLayerRenderer))
+            if (Physics.Raycast(ray, out var raycastHit, Mathf.Infinity, (int)targetLayerRenderer))
             {
-                var targetObject = raycastHit.transform.gameObject;
-                if (!connectedObjects.Contains(raycastHit.collider.gameObject))
+                var hitObject = raycastHit.collider.gameObject;
+
+                if (hitObject.CompareTag(targetTag))
                 {
-                    connectedObjects.Add(raycastHit.collider.gameObject);
+                    if (connectedObjects.Count == 0 || hitObject != connectedObjects.Last())
+                    {
+                        connectedObjects.Add(hitObject);
+                        Debug.Log($"Connected to sphere: {hitObject.name}. List size: {connectedObjects.Count}");
+                    }
                 }
             }
         }
+
         DrawLine();
 
         if (Input.GetMouseButtonUp(0) && _isDrawing)
         {
             _isDrawing = false;
-            connectedObjects.Clear();
-            // Here you can add logic to check if the drawn path is valid
+
+            if (CheckForCompleteConnection())
+            {
+                Debug.Log("🎉 Successful Aurora Connection! All unique spheres connected.");
+                HandleSuccessfulConnection();
+            }
+            else
+            {
+                Debug.Log(
+                    $"Connection failed. Visited {connectedObjects.Distinct().Count()} out of {requiredTargetCount} unique targets.");
+                ResetConnection(shouldClearLine: true);
+            }
         }
     }
-    public void DrawLine()
+}
+    
+    private bool CheckForCompleteConnection()
     {
+        return connectedObjects.Distinct().Count() == requiredTargetCount;
+    }
+
+    private void HandleSuccessfulConnection()
+    {
+        _isDrawing = false; 
+
         drawPositions.Clear();
-        if (connectedObjects.Count > 0)
+        foreach (var obj in connectedObjects)
         {
-            foreach (var obj in connectedObjects)
-            {
-                drawPositions.Add(obj.transform.position);
-            }
-            Vector3 inputDrawPosition =  GetMouseWorldPosition();
-            drawPositions.Add(inputDrawPosition);
-            lineRenderer.positionCount = drawPositions.Count;
-            lineRenderer.SetPositions(drawPositions.ToArray());       
+            drawPositions.Add(obj.transform.position);
+        }
+        lineRenderer.positionCount = drawPositions.Count;
+        lineRenderer.SetPositions(drawPositions.ToArray());
+        
+        if (foxtail != null && drawPositions.Count > 1)
+        {
+            StartCoroutine(AnimateFoxtailAlongPath(drawPositions));
+        }
+        else
+        {
+             Debug.Log("PERFORMING ACTION: Line kept active, no foxtail to animate.");
+        }
+    }
+
+    private void ResetConnection(bool shouldClearLine)
+    {
+        _isDrawing = false;
+        connectedObjects.Clear();
+        drawPositions.Clear();
+        
+        if (shouldClearLine)
+        {
+            lineRenderer.positionCount = 0;
+            lineRenderer.gameObject.SetActive(false);
         }
         
+        if (foxtail != null)
+        {
+            StopAllCoroutines(); 
+            foxtail.SetActive(false);
+        }
     }
+
+    public void DrawLine()
+    {
+        if (!Input.GetMouseButton(0) || !_isDrawing || connectedObjects.Count == 0)
+        {
+            return;
+        }
+
+        drawPositions.Clear();
+        
+        foreach (var obj in connectedObjects)
+        {
+            drawPositions.Add(obj.transform.position);
+        }
+
+        Vector3 inputDrawPosition = GetMouseWorldPosition();
+        drawPositions.Add(inputDrawPosition);
+
+        lineRenderer.positionCount = drawPositions.Count;
+        lineRenderer.SetPositions(drawPositions.ToArray());
+    }
+
     public Vector3 GetMouseWorldPosition()
     {
         var targetInputPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
-        return targetInputPos;}
+        return targetInputPos;
+    }
+    
+    private IEnumerator AnimateFoxtailAlongPath(List<Vector3> path)
+    {
+        foxtail.SetActive(true);
+        foxtail.transform.position = path[0] + foxtailOffset; 
+
+        for (int i = 0; i < path.Count - 1; i++)
+        {
+            Vector3 startPoint = path[i];
+            Vector3 endPoint = path[i + 1];
+            
+            float segmentDistance = Vector3.Distance(startPoint, endPoint);
+            float duration = segmentDistance / animationSpeed; 
+            float timeElapsed = 0f;
+            
+            while (timeElapsed < duration)
+            {
+                float t = timeElapsed / duration;
+                
+                Vector3 currentPosition = Vector3.Lerp(startPoint, endPoint, t);
+                
+                foxtail.transform.position = currentPosition + foxtailOffset;
+                
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            foxtail.transform.position = endPoint + foxtailOffset;
+        }
+
+        Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
+    }
 }

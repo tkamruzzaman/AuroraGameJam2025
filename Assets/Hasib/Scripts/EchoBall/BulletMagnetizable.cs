@@ -7,6 +7,7 @@ public class BulletMagnetizable : MonoBehaviour
     public float pullForce = 15f;
     public float maxSpeed = 20f;
     EchoBallMovement movement;
+    [SerializeField] float bulletDuration = 20f;
 
     private Rigidbody rb;
 
@@ -14,7 +15,7 @@ public class BulletMagnetizable : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         movement = GetComponent<EchoBallMovement>();
-        Destroy(gameObject,5f);
+        Destroy(gameObject,20f);
     }
     
 

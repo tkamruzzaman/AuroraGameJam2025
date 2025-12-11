@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    private int _bounceCount;
-    [SerializeField] private int bounceLimit;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,15 +16,5 @@ public class Cube : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Obstacle"))
-        {
-            _bounceCount++;
-            if (_bounceCount > bounceLimit)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
+   
 }

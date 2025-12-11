@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 
 public class Shoot : MonoBehaviour
 {
+    public static bool HasClearView = true;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform player;
     [SerializeField] private float bulletForce = 10f;
@@ -14,6 +15,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] GameObject aimIndicator;
     [SerializeField] private GameObject playerArt;
     private Vector3 mouseWorld;
+    [SerializeField]  public static int currentBulletCount=0;
     private void Awake()
     {
         
@@ -34,7 +36,7 @@ public class Shoot : MonoBehaviour
             FlipSpriteBasedOnTarget(playerArt.transform,aimIndicator.transform);
         }
        
-        if (AngleCheck(transform.eulerAngles.z) && Input.GetMouseButtonDown(0)  )
+        if ( AngleCheck(transform.eulerAngles.z) && Input.GetMouseButtonDown(0)  )
         {
             // Distance from camera to your plane
 
@@ -42,7 +44,7 @@ public class Shoot : MonoBehaviour
             // Spawn bullet at player's Z plane
             Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, planeZ);
             GameObject bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
-
+            currentBulletCount++;
             // Direction to mouse
             Vector3 dir = mouseWorld - spawnPos;
             MoveBullet(dir, bullet);
@@ -93,7 +95,7 @@ public class Shoot : MonoBehaviour
 
     bool AngleCheck(float angle)
     {
-        if ((angle >= 100 && angle <= 170)||(angle >= 20 && angle <= 70))
+        if ((angle >= 100 && angle <= 170)||(angle >= 20 && angle <= 70) && HasClearView)
         {
             aimIndicatorSprite.color = Color.green;
             return true ;

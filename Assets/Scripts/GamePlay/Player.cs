@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 
         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(IDLE_STATE))
         {
-            Debug.Log("idle state. change the idle animation here maybe?");
+           // Debug.Log("idle state. change the idle animation here maybe?");
         }
     }
 

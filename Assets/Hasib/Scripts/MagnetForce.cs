@@ -39,10 +39,11 @@ public class MagnetForce : MonoBehaviour
         {
             
             isAlreadyActive = true;
+            AuroraPointsConnector.Instance.CheckIfAllActive();
             DisableColliders();
             ChangeColor();
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;  
-            Destroy(other.gameObject,5f);
+            Destroy(other.gameObject);
         }
         
     }
@@ -68,7 +69,7 @@ public class MagnetForce : MonoBehaviour
 
         foreach (SphereCollider col in colliders)
         {
-            col.enabled = false;
+            col.isTrigger = true;
         }
     }
 }
