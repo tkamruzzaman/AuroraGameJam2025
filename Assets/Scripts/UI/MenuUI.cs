@@ -22,7 +22,7 @@ public class MenuUI : MonoBehaviour
 
     private void OnPlayButtonAction()
     {
-        GameServices.Instance.sceneNavigation.LoadScene(Scenes.Game);
+        GameServices.Instance.sceneNavigation.LoadScene(Scenes.Intro);
     }
 
     private void OnCreditsButtonAction()
