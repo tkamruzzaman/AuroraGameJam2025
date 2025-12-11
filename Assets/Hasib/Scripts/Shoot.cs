@@ -48,6 +48,7 @@ public class Shoot : MonoBehaviour
             // Spawn bullet at player's Z plane
             Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, planeZ);
             GameObject bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
+            GameServices.Instance.audioManager.PlayEchoSound(GameServices.Instance.audioManager.callingAnimartionClip,1f,0);
             currentBulletCount++;
             // Direction to mouse
             Vector3 dir = mouseWorld - spawnPos;
