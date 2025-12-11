@@ -21,7 +21,7 @@ public static event Action OnBulletDestroyed;
     
     void DestroyBullet()
     {
-        OnBulletDestroyed?.Invoke();
+        //OnBulletDestroyed?.Invoke();
         Destroy(gameObject);//reducing the time.. Uswah
         
     }

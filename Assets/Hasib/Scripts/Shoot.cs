@@ -51,11 +51,13 @@ public class Shoot : MonoBehaviour
             Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, planeZ);
             bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
             currentBulletCount++;
+            OnBulletSpawned?.Invoke();
+            print("Bullet Spawned Event Invoked");
             // Direction to mouse
             Vector3 dir = mouseWorld - spawnPos;
             // cinemachineCamera.gameObject.SetActive(true);
             // cinemachineCamera.Follow = bullet.transform;
-            OnBulletSpawned?.Invoke();
+            
             MoveBullet(dir, bullet);
         }
     }

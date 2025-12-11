@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+using System;
+
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +22,7 @@ public class Player : MonoBehaviour
     InputAction moveAction;
     InputAction jumpAction;
     InputAction interactAction;
+    public static event Action OnPlayerWalking;
 
     bool isJumping;
 
@@ -84,6 +88,8 @@ public class Player : MonoBehaviour
             playerArt.transform.localScale = scale;
             //transform.localScale = scale;
             iswalkingAnimationTrue = true;
+            //yhyhthtgr
+            OnPlayerWalking?.Invoke();
         }
         else
         {

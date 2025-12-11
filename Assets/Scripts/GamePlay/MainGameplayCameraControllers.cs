@@ -6,32 +6,42 @@ using Unity.Cinemachine;
 
 public class MainGameplayCameraControllers : MonoBehaviour
 {
-    public Transform Player;
+    public Transform player;
     public Transform CurrentEcho;
-public CinemachineCamera cinemachineCamera;
+public CinemachineCamera WalkingCamera;
+public CinemachineCamera BulletShootCamera;
     private Transform Echo;
     //CurrentEcho == bullet
     //cinemachine..f
     void OnEnable()
     {
-        Shoot.OnBulletSpawned += FollowBullet;
-        BulletMagnetizable.OnBulletDestroyed += FollowPlayer;
+        Shoot.OnBulletSpawned += BulletShoot;
+        Player.OnPlayerWalking += WalkingIdleCamera;
+        //BulletMagnetizable.OnBulletDestroyed += WalkingIdleCamera;
+        //MagnetForce.OnMagneticStartActivation += BulletShoot;
     }
     void OnDisable()
     {
-        Shoot.OnBulletSpawned -= FollowBullet;
-        BulletMagnetizable.OnBulletDestroyed -= FollowPlayer;
+        Shoot.OnBulletSpawned -= BulletShoot;
+        Player.OnPlayerWalking -= WalkingIdleCamera;
+        //BulletMagnetizable.OnBulletDestroyed -= BulletShoot;
+        //MagnetForce.OnMagneticStartActivation -= BulletShoot;
+
     }
-    void FollowPlayer()
+    void WalkingIdleCamera()
     {
-        print("Following Player");
-        cinemachineCamera.gameObject.SetActive(true);
-        cinemachineCamera.Follow = Player;
+        WalkingCamera.gameObject.SetActive(true);
+        BulletShootCamera.gameObject.SetActive(false);
+        WalkingCamera.Follow = player;
+        print("Walking Camera Activated");
+
     }
-    void FollowBullet()
+    void BulletShoot()
     {
-        print("Following Bullet");
-        cinemachineCamera.gameObject.SetActive(true);
-        cinemachineCamera.Follow = Shoot.Instance.bullet.transform;
+        print("camera goes back");
+        BulletShootCamera.gameObject.SetActive(true);
+        WalkingCamera.gameObject.SetActive(false);
+        //BulletShootCamera.Follow = player;
     }
+   
 }
