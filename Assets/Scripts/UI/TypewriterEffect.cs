@@ -87,7 +87,7 @@ public class TypewriterEffect : MonoBehaviour
     {
         if (obj != _textBox || !_readyForNewText || _textBox.maxVisibleCharacters >= _textBox.textInfo.characterCount)
             return;
-
+print("Starting Typewriter Effect");
         CurrentlySkipping = false;
         _readyForNewText = false;
 
