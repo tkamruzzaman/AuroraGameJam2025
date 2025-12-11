@@ -8,6 +8,7 @@ public class Shoot : MonoBehaviour
 {
     public static bool HasClearView = true;
     [SerializeField] private GameObject bulletPrefab;
+  
     [SerializeField] private Transform player;
     [SerializeField] private float bulletForce = 10f;
     [SerializeField] private float planeZ = 0f;
@@ -17,7 +18,11 @@ public class Shoot : MonoBehaviour
     [SerializeField] GameObject aimIndicator;
     [SerializeField] private GameObject playerArt;
     private Vector3 mouseWorld;
-    [SerializeField]  public static int currentBulletCount=0;
+
+    public static bool isShooting;
+    [Header("Shoot Angles")]
+    [SerializeField] Vector2 aimAngleRight;
+    [SerializeField] Vector2 aimAngleLeft;
     // public CinemachineCamera cinemachineCamera;
     public static event Action OnBulletSpawned;
     public static Shoot Instance;
@@ -25,6 +30,7 @@ public class Shoot : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
         // Cursor.visible = false;
         // Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -35,31 +41,43 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
+        if (!isShooting)
+        {
+            Aim();
+        }
         
-        Aim();
+        
         if (!Player.iswalkingAnimationTrue)
         {
             FlipSpriteBasedOnTarget(playerArt.transform,aimIndicator.transform);
         }
        
-        if ( AngleCheck(transform.eulerAngles.z) && Input.GetMouseButtonDown(0)  )
+        if (bullet == null && AngleCheck(transform.eulerAngles.z) && Input.GetMouseButtonDown(0) &&  !Player.iswalkingAnimationTrue )
         {
             // Distance from camera to your plane
-
-
-            // Spawn bullet at player's Z plane
-            Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, planeZ);
-            bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
-            currentBulletCount++;
-            OnBulletSpawned?.Invoke();
-            print("Bullet Spawned Event Invoked");
-            // Direction to mouse
-            Vector3 dir = mouseWorld - spawnPos;
-            // cinemachineCamera.gameObject.SetActive(true);
-            // cinemachineCamera.Follow = bullet.transform;
             
-            MoveBullet(dir, bullet);
+            player.GetComponent<Player>().CallAction();
+            isShooting = true;
+
         }
+        
+    }
+
+    public void ShootBullet()
+    {
+        // Spawn bullet at player's Z plane
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, planeZ);
+        bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
+        
+        OnBulletSpawned?.Invoke();
+        print("Bullet Spawned Event Invoked");
+        // Direction to mouse
+        Vector3 dir = mouseWorld - spawnPos;
+        // cinemachineCamera.gameObject.SetActive(true);
+        // cinemachineCamera.Follow = bullet.transform;
+            
+        MoveBullet(dir, bullet);
+        isShooting = false;
     }
 
     void FlipSpriteBasedOnTarget(Transform spriteTransform, Transform targetTransform)
@@ -106,7 +124,7 @@ public class Shoot : MonoBehaviour
 
     bool AngleCheck(float angle)
     {
-        if ((angle >= 100 && angle <= 170)||(angle >= 20 && angle <= 70) && HasClearView)
+        if ((angle >= aimAngleLeft.x && angle <= aimAngleLeft.y)||(angle >= aimAngleRight.x && angle <= aimAngleRight.y) )
         {
             aimIndicatorSprite.color = Color.green;
             return true ;
