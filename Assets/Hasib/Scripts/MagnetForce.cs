@@ -41,6 +41,7 @@ public class MagnetForce : MonoBehaviour
             
             isAlreadyActive = true;
             AuroraPointsConnector.Instance.CheckIfAllActive();
+            AuroraPointsConnector.Instance.AuroraFadeIner();
             DisableColliders();
             ChangeColor();
             //OnMagneticStartActivation?.Invoke();

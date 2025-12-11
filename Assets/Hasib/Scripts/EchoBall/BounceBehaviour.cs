@@ -77,13 +77,13 @@ public class BounceBehaviour : MonoBehaviour
 // Rotate around Z axis
         direction = Quaternion.AngleAxis(bounciness.BounceAngle, Vector3.forward) * direction;
         float bounce =bounciness .BounceSpeedMultiplier;
-        snowOffset = hitFromRight? (0.5f*1): (0.5f*-1);
+        snowOffset = hitFromRight? (0.1f*1): (0.1f*-1);
         bounciness.BounceTree(hitFromRight);
         // Tell mellow system to use the bounced direction
         GetComponent<EchoBallMovement>().Bounce(direction, bounce);
         if (bounciness.fallableSnow)
         {
-            SnowFallManager.Instance.PlayFallingSnowParticles(hitPosition+new Vector3(snowOffset,0f,0f));   
+            SnowFallManager.Instance.PlayFallingSnowParticles(hitPosition+new Vector3(snowOffset,0f,-1f));   
         }
     }
 
