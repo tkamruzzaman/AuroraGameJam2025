@@ -22,16 +22,20 @@ public class MenuUI : MonoBehaviour
 
     private void OnPlayButtonAction()
     {
+        GameServices.Instance.audioManager.PlayButtonClickSound();
         GameServices.Instance.sceneNavigation.LoadScene(Scenes.Intro);
     }
 
     private void OnCreditsButtonAction()
     {
+        GameServices.Instance.audioManager.PlayButtonClickSound();
         creditsPanel.SetActive(true);
     }
 
     private void OnExitButtonAction()
     {
+        GameServices.Instance.audioManager.PlayButtonClickSound();
+
 #if UNITY_EDITOR
         if(UnityEditor.EditorApplication.isPlaying)
             UnityEditor.EditorApplication.isPlaying = false;

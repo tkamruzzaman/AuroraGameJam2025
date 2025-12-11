@@ -50,15 +50,14 @@ public class IntroSceneUI : MonoBehaviour
 
     void NextButtonAction()
     {
+        GameServices.Instance.audioManager.PlayButtonClickSound();
+
         nextButton.gameObject.SetActive(false);
         currentCanvasGroup.DOFade(0, fadeDuration).OnComplete(() =>
         {
             currentCanvasGroup.gameObject.SetActive(false);
 
-            print("INdex before: " + index);
             index++;
-            print("INdex Afterrrrrrrrrrrrrr: " + index);
-
 
             if (index < introImageGroups.Length)
             {
