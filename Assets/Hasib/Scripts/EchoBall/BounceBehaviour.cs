@@ -46,6 +46,7 @@ public class BounceBehaviour : MonoBehaviour
         if (!usePerfectBounce) return;
         if (collision.gameObject.CompareTag("Ground"))
         {
+            Shoot.currentBulletCount--;
             Destroy(gameObject);
             return;
         }
@@ -55,6 +56,7 @@ public class BounceBehaviour : MonoBehaviour
         _bounceCount++;
         if (_bounceCount > bounceLimit)
         {
+            Shoot.currentBulletCount--;
             Destroy(gameObject);
         }
         var speed = lastVelocity.magnitude;
@@ -87,6 +89,7 @@ public class BounceBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Sky")&& _bounceCount<1)
         {
+            Shoot.currentBulletCount--;
             Destroy(gameObject);
             return;
         }
