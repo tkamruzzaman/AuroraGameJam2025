@@ -271,6 +271,10 @@ OnAuroraConnectionComplete?.Invoke();
         lineRenderer.positionCount = 0;
         lineRenderer.gameObject.SetActive(false);
         foxtail.SetActive(false);
+        foreach (GameObject obj in connectedObjects)
+        {
+            obj.gameObject.SetActive(false);
+        }
     }
 public void FadeIn(GameObject plane, float duration)
 {
