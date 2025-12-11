@@ -45,7 +45,7 @@ public class MagnetForce : MonoBehaviour
             ChangeColor();
             //OnMagneticStartActivation?.Invoke();
             other.gameObject.GetComponent<MeshRenderer>().enabled = false; 
-            transform.GetChild(0).GetComponent<Animator>().SetBool("IsLit", true);
+           // transform.GetChild(0).GetComponent<Animator>().SetBool("IsLit", true);
             Destroy(other.gameObject);
         }
         

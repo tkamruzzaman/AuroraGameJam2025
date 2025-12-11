@@ -2103,15 +2103,12 @@ MonoBehaviour:
   m_SiblingRotationConstraints: 1
   m_LengthUnification: 0
   m_CollisionLayers:
-    serializedVersion: 2
     m_Bits: 1
   m_ExtraColliders: []
   m_Radius: 0
   m_RadiusCurve:
-    serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
-      time: 0
+    - time: 0
       value: 1
       inSlope: 0
       outSlope: 0
@@ -2119,8 +2116,7 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - serializedVersion: 3
-      time: 1
+    - time: 1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -2604,6 +2600,7 @@ MonoBehaviour:
   aimIndicatorSprite: {fileID: 1502299071}
   aimIndicator: {fileID: 1502299069}
   playerArt: {fileID: 1168970508}
+  isShooting: 0
   aimAngleRight: {x: 5, y: 60}
   aimAngleLeft: {x: 120, y: 175}
   bullet: {fileID: 0}
@@ -2717,6 +2714,7 @@ MonoBehaviour:
   BulletShootCamera: {fileID: 223108584}
   FoxFollowCamera: {fileID: 0}
   FoxTimeline: {fileID: 0}
+  _auroraPointsConnector: {fileID: 1240608786}
 --- !u!1001 &907129657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9628,6 +9626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InitialTimeline
   playerScript: {fileID: 2025293752}
   rotatePoint: {fileID: 798877665}
+  Orb: {fileID: 0}
   playableDirectorController: {fileID: 1649155103}
   cinemachineCamera: {fileID: 664132384}
 --- !u!1 &1681661632
@@ -15186,6 +15185,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5284557127622890621, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
+      propertyPath: _shoot
+      value: 
+      objectReference: {fileID: 798877667}
     - target: {fileID: 5284557127622890621, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
       propertyPath: m_Enabled
       value: 1

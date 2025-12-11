@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public static event Action OnPlayerWalking;
 
     bool isJumping;
+    [SerializeField]private Shoot _shoot;
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!Shoot.isShooting)
+        if (!_shoot.bullet && !_shoot.isShooting)
         {
             Movement();
         }
