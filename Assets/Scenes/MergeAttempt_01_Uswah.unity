@@ -1954,7 +1954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &664132382
 Transform:
   m_ObjectHideFlags: 0
@@ -1964,7 +1964,7 @@ Transform:
   m_GameObject: {fileID: 664132381}
   serializedVersion: 2
   m_LocalRotation: {x: 0.021640414, y: -0, z: -0, w: 0.9997658}
-  m_LocalPosition: {x: 2.1475883, y: 2.7113001, z: -30.095156}
+  m_LocalPosition: {x: 6.497674, y: 2.7113001, z: -30.095156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1982,8 +1982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePositionComposer
-  CameraDistance: 10
-  DeadZoneDepth: 0
+  CameraDistance: 7.8797455
+  DeadZoneDepth: 7.04
   Composition:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
@@ -1994,7 +1994,7 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0.99, z: 6.98}
+  TargetOffset: {x: 0.497674, y: 1.3180252, z: 7.2939124}
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 0
@@ -2025,7 +2025,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 78.13602
+    FieldOfView: 71.2
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -2575,7 +2575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &798877666
 Transform:
   m_ObjectHideFlags: 0
@@ -2612,6 +2612,8 @@ MonoBehaviour:
   aimIndicatorSprite: {fileID: 1502299071}
   aimIndicator: {fileID: 1502299069}
   playerArt: {fileID: 1168970508}
+  aimAngleRight: {x: 5, y: 60}
+  aimAngleLeft: {x: 120, y: 175}
   bullet: {fileID: 0}
 --- !u!212 &798877668
 SpriteRenderer:
@@ -8304,6 +8306,19 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8352710262319544998, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
   m_PrefabInstance: {fileID: 1989553795}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1168970513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168970508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ac950a941c8494b91ab52d2d87f82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CallAnimation
+  _shoot: {fileID: 798877667}
 --- !u!1 &1231797929
 GameObject:
   m_ObjectHideFlags: 0
@@ -15762,6 +15777,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2541852720352540079, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2025293753}
+    - targetCorrespondingSourceObject: {fileID: 6346335649228596934, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1168970513}
   m_SourcePrefab: {fileID: 100100000, guid: a9bbcd1d73ad74f4d92a4f841c16cf1b, type: 3}
 --- !u!1 &2025293749 stripped
 GameObject:
@@ -66268,7 +66286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7642490836195442250
 MonoBehaviour:
   m_ObjectHideFlags: 0
