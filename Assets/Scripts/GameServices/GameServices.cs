@@ -49,7 +49,7 @@ public class GameServices : MonoBehaviour
 
     private void Start()
     {
-        audioManager.PlayBackgroundMusic();
+        //audioManager.PlayBackgroundMusic();
     }
 
 

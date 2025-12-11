@@ -13,10 +13,13 @@ public class IntroSceneUI : MonoBehaviour
     [SerializeField] Button nextButton;
 
     private CanvasGroup currentCanvasGroup;
+    int index = 0;
+
 
     private void Awake()
     {
         nextButton.onClick.AddListener(NextButtonAction);
+
         nextButton.gameObject.SetActive(false);
 
         foreach (var canvasGroup in introImageGroups)
@@ -28,66 +31,42 @@ public class IntroSceneUI : MonoBehaviour
 
     private void Start()
     {
-
-
-        StartCoroutine(IE_PlayIntroSequence());
-    }
-
-int index;
-    IEnumerator IE_PlayIntroSequence()
-    {
-        //foreach (var canvasGroup in introImageGroups)
-        //{
-            currentCanvasGroup = introImageGroups[index];
-            StartCoroutine(IE_PlayIntro());
-            yield return new WaitForSeconds(fadeDuration + displayDuration + fadeDuration);
-        //}
-        // StartCoroutine(IE_PlayIntro(introImageGroups[0]));
-        // yield return new WaitForSeconds(fadeDuration + displayDuration + fadeDuration);
-        // StartCoroutine(IE_PlayIntro(introImageGroups[1]));
-        // yield return new WaitForSeconds(fadeDuration + displayDuration + fadeDuration);
-        // StartCoroutine(IE_PlayIntro(introImageGroups[2]));
-        // yield return new WaitForSeconds(fadeDuration + displayDuration + fadeDuration);
-        //    StartCoroutine(IE_PlayIntro(introImageGroups[3]));
-        // yield return new WaitForSeconds(fadeDuration + displayDuration + fadeDuration);
-        //    StartCoroutine(IE_PlayIntro(introImageGroups[4]));
-        // yield return new WaitForSeconds(fadeDuration + displayDuration + fadeDuration);
-        // StartCoroutine(IE_PlayIntro(introImageGroups[5]));
-        // yield return new WaitForSeconds(fadeDuration + displayDuration + fadeDuration);
+        StartCoroutine(IE_PlayIntro());
     }
 
     IEnumerator IE_PlayIntro()
     {
+        currentCanvasGroup = null;
+        currentCanvasGroup = introImageGroups[index];
+
         currentCanvasGroup.gameObject.SetActive(true);
         currentCanvasGroup.DOFade(1, fadeDuration);
 
         yield return new WaitForSeconds(displayDuration);
 
         nextButton.gameObject.SetActive(true);
-
-
-
         yield return null;
     }
 
     void NextButtonAction()
     {
+        GameServices.Instance.audioManager.PlayButtonClickSound();
+
+        nextButton.gameObject.SetActive(false);
         currentCanvasGroup.DOFade(0, fadeDuration).OnComplete(() =>
         {
             currentCanvasGroup.gameObject.SetActive(false);
+
+            index++;
+
+            if (index < introImageGroups.Length)
+            {
+                StartCoroutine(IE_PlayIntro());
+            }
+            else
+            {
+                GameServices.Instance.sceneNavigation.LoadScene(Scenes.Game);
+            }
         });
-        index++;
-        nextButton.gameObject.SetActive(false);
-        if (index < introImageGroups.Length)
-        {
-            currentCanvasGroup = introImageGroups[index];
-            StartCoroutine(IE_PlayIntro());
-        }
-        else
-        {
-            //all done, load next scene
-        GameServices.Instance.sceneNavigation.LoadScene(Scenes.Game);
-        }
-    
     }
 }
