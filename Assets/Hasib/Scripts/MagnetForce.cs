@@ -8,6 +8,7 @@ public class MagnetForce : MonoBehaviour
     [SerializeField] private float newIntensity;
     [SerializeField] private float intensityMultipler;
     public static MagnetForce instance;
+    public static event Action OnMagneticStartActivation;
     void OnEnable()
     {
         instance = this;
@@ -42,7 +43,9 @@ public class MagnetForce : MonoBehaviour
             AuroraPointsConnector.Instance.CheckIfAllActive();
             DisableColliders();
             ChangeColor();
-            other.gameObject.GetComponent<MeshRenderer>().enabled = false;  
+            //OnMagneticStartActivation?.Invoke();
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false; 
+            transform.GetChild(0).GetComponent<Animator>().SetBool("IsLit", true);
             Destroy(other.gameObject);
         }
         

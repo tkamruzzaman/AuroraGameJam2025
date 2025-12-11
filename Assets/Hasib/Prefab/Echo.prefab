@@ -44606,7 +44606,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d4594ff235ed7ae4a876d95df6d3dc70, type: 2}
+  - {fileID: 2100000, guid: ea3f0359073d4c740ab8d9ca2fd424a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -44718,6 +44718,7 @@ MonoBehaviour:
   magnet: {fileID: 0}
   pullForce: 15
   maxSpeed: 20
+  bulletDuration: 20
 --- !u!114 &-1115482808973153673
 MonoBehaviour:
   m_ObjectHideFlags: 0
