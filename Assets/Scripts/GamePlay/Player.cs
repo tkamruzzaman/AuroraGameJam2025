@@ -134,6 +134,7 @@ public class Player : MonoBehaviour
 
     public void CallAction()
     {
+        
         playerAnimator.SetBool(IS_CALLING, true);
         //play calling sound
     }

@@ -58,7 +58,17 @@ public class Shoot : MonoBehaviour
             
             player.GetComponent<Player>().CallAction();
             isShooting = true;
+            
 
+        }
+
+        if (bullet)
+        {
+            aimIndicator.SetActive(false);
+        }
+        else
+        {
+            aimIndicator.SetActive(true);
         }
         
     }

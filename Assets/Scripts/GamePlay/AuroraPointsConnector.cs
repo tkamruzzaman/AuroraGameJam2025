@@ -16,7 +16,7 @@ public class AuroraPointsConnector : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField]
-    bool IsAllPointActive;
+    public bool IsAllPointActive;
     [Header("Target Configuration")]
     public Vector3 foxtailOffset = new Vector3(0f, 0.5f, 0f); 
     public string targetTag = "PathSphere"; 
@@ -263,7 +263,7 @@ OnAuroraConnectionComplete?.Invoke();
     }
 
     Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
-    FadeIn(AuroraShader, 7);
+    FadeColorIntensity(AuroraShader, 3);
 }
     void EndThePointsConnection()
     {
@@ -272,28 +272,24 @@ OnAuroraConnectionComplete?.Invoke();
         lineRenderer.gameObject.SetActive(false);
         foxtail.SetActive(false);
     }
-public void FadeIn(GameObject plane, float duration)
-{
-    EndThePointsConnection();
-    AuroraShader.SetActive(true);
-    Material material = plane.GetComponent<Renderer>().material;
-    
-    // Set material to transparent mode
-    material.SetFloat("_Mode", 3);
-    material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-    material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-    material.SetInt("_ZWrite", 0);
-    material.DisableKeyword("_ALPHATEST_ON");
-    material.EnableKeyword("_ALPHABLEND_ON");
-    material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-    material.renderQueue = 3000;
-    
-    // Start invisible
-    Color color = material.color;
-    color.a = 0f;
-    material.color = color;
-    
-    // Fade in
-    material.DOFade(1f, duration);
-}
+    public void FadeColorIntensity(GameObject plane, float duration)
+    {
+        if (!plane.activeSelf)
+            plane.SetActive(true);
+
+        Renderer r = plane.GetComponent<Renderer>();
+        Material m = r.material;
+
+        // Start with zero intensity (black)
+        Color start = m.color;
+        Color zero = start * 0f;
+        m.color = zero;
+
+        // Target intensity = 1.5x brighter
+        Color target = start * 1.5f;
+
+        // Tween from zero → target
+        m.DOColor(target, duration)
+            .SetEase(Ease.InOutQuad);
+    }
 }
