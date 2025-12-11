@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 235174202}
   - component: {fileID: 235174204}
   - component: {fileID: 235174203}
+  - component: {fileID: 235174205}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -438,6 +439,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235174201}
   m_CullTransparentMesh: 1
+--- !u!114 &235174205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235174201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b65adf6376e4c37b6a90187b680b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
+  charactersPerSecond: 20
+  interpunctuationDelay: 0.5
+  quickSkip: 0
+  skipSpeedup: 5
+  sendDoneDelay: 0.25
 --- !u!1 &537628068
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,6 +467,7 @@ GameObject:
   - component: {fileID: 537628069}
   - component: {fileID: 537628071}
   - component: {fileID: 537628070}
+  - component: {fileID: 537628072}
   m_Layer: 5
   m_Name: Text (TMP)_01
   m_TagString: Untagged
@@ -576,6 +595,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537628068}
   m_CullTransparentMesh: 1
+--- !u!114 &537628072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537628068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b65adf6376e4c37b6a90187b680b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
+  charactersPerSecond: 20
+  interpunctuationDelay: 0.5
+  quickSkip: 0
+  skipSpeedup: 5
+  sendDoneDelay: 0.25
 --- !u!1 &567147148
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +802,7 @@ GameObject:
   - component: {fileID: 589598339}
   - component: {fileID: 589598341}
   - component: {fileID: 589598340}
+  - component: {fileID: 589598342}
   m_Layer: 5
   m_Name: Text (TMP)_02
   m_TagString: Untagged
@@ -893,6 +930,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589598338}
   m_CullTransparentMesh: 1
+--- !u!114 &589598342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589598338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b65adf6376e4c37b6a90187b680b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
+  charactersPerSecond: 20
+  interpunctuationDelay: 0.5
+  quickSkip: 0
+  skipSpeedup: 5
+  sendDoneDelay: 0.25
 --- !u!1 &635646674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1529,7 @@ GameObject:
   - component: {fileID: 1261096396}
   - component: {fileID: 1261096398}
   - component: {fileID: 1261096397}
+  - component: {fileID: 1261096399}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1606,6 +1661,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261096395}
   m_CullTransparentMesh: 1
+--- !u!114 &1261096399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261096395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b65adf6376e4c37b6a90187b680b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
+  charactersPerSecond: 20
+  interpunctuationDelay: 0.5
+  quickSkip: 0
+  skipSpeedup: 5
+  sendDoneDelay: 0.25
 --- !u!1 &1437619876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,6 +1810,7 @@ GameObject:
   - component: {fileID: 1574385085}
   - component: {fileID: 1574385087}
   - component: {fileID: 1574385086}
+  - component: {fileID: 1574385088}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1871,6 +1944,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574385084}
   m_CullTransparentMesh: 1
+--- !u!114 &1574385088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574385084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b65adf6376e4c37b6a90187b680b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
+  charactersPerSecond: 20
+  interpunctuationDelay: 0.5
+  quickSkip: 0
+  skipSpeedup: 5
+  sendDoneDelay: 0.25
 --- !u!1 &1621758335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,6 +2098,7 @@ GameObject:
   - component: {fileID: 1714874684}
   - component: {fileID: 1714874686}
   - component: {fileID: 1714874685}
+  - component: {fileID: 1714874687}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2136,6 +2227,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714874683}
   m_CullTransparentMesh: 1
+--- !u!114 &1714874687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714874683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b65adf6376e4c37b6a90187b680b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
+  charactersPerSecond: 20
+  interpunctuationDelay: 0.5
+  quickSkip: 0
+  skipSpeedup: 5
+  sendDoneDelay: 0.25
 --- !u!1 &1945166619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2255,7 @@ GameObject:
   - component: {fileID: 1945166620}
   - component: {fileID: 1945166622}
   - component: {fileID: 1945166621}
+  - component: {fileID: 1945166623}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2274,6 +2383,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945166619}
   m_CullTransparentMesh: 1
+--- !u!114 &1945166623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945166619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b65adf6376e4c37b6a90187b680b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
+  charactersPerSecond: 20
+  interpunctuationDelay: 0.5
+  quickSkip: 0
+  skipSpeedup: 5
+  sendDoneDelay: 0.25
 --- !u!1 &2079270680
 GameObject:
   m_ObjectHideFlags: 0

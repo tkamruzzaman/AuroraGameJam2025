@@ -15,7 +15,6 @@ public class IntroSceneUI : MonoBehaviour
     private CanvasGroup currentCanvasGroup;
     int index = 0;
 
-
     private void Awake()
     {
         nextButton.onClick.AddListener(NextButtonAction);
