@@ -1,5 +1,7 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
+using Random = System.Random;
 
 public class MagnetForce : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class MagnetForce : MonoBehaviour
     private void Start ()
     {
         materialRenderer = GetComponent<Renderer>();
+        StartFloatyRandom(transform, 0.3f, 0.8f, 3f);
+
        
     }
 
@@ -75,5 +79,18 @@ public class MagnetForce : MonoBehaviour
         {
             col.isTrigger = true;
         }
+    }
+    
+    public void StartFloatyRandom(Transform target, float minAmount, float maxAmount, float duration = 1f)
+    {
+        // Random starting direction: up or down
+        float dir = UnityEngine.Random.value > 0.5f ? 1f : -1f;
+
+        // Random float amount between min and max
+        float amount = UnityEngine.Random.Range(minAmount, maxAmount) * dir;
+
+        target.DOMoveY(target.position.y + amount, duration)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutSine);
     }
 }
