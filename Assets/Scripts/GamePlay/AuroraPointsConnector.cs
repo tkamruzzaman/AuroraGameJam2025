@@ -16,7 +16,7 @@ public class AuroraPointsConnector : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField]
-    bool IsAllPointActive;
+    public bool IsAllPointActive;
     [Header("Target Configuration")]
     public Vector3 foxtailOffset = new Vector3(0f, 0.5f, 0f); 
     public string targetTag = "PathSphere"; 
@@ -33,6 +33,9 @@ public class AuroraPointsConnector : MonoBehaviour
     public List<Vector3> drawPositions = new List<Vector3>();
     public CinemachineCamera cinemachineCamera;
     public GameObject AuroraShader;
+    public GameObject AuroraShader2;
+    private float currentIntensityAuroraShader=0f;
+    private Color auroraBaseColor;
 
     private void Awake()
     {
@@ -72,6 +75,14 @@ public class AuroraPointsConnector : MonoBehaviour
         
         Debug.Log($"Total required connection targets found: {requiredTargetCount}.");
         cinemachineCamera.Follow = player.transform;
+        auroraBaseColor = AuroraShader.GetComponent<Renderer>().material.color;
+        Renderer r = AuroraShader.GetComponent<Renderer>();
+        Material m = r.material;
+
+        // Start with zero intensity (black)
+        Color start = m.color;
+        Color zero = start * 0f;
+        m.color = zero;
     }
 
     private void Update()
@@ -263,7 +274,9 @@ OnAuroraConnectionComplete?.Invoke();
     }
 
     Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
-    FadeIn(AuroraShader, 7);
+    currentIntensityAuroraShader = 2.5f;
+    FadeColorToTarget(AuroraShader, 3);
+    FadeColorIntensity(AuroraShader2, 3);
 }
     void EndThePointsConnection()
     {
@@ -271,29 +284,53 @@ OnAuroraConnectionComplete?.Invoke();
         lineRenderer.positionCount = 0;
         lineRenderer.gameObject.SetActive(false);
         foxtail.SetActive(false);
+        foreach (GameObject obj in connectedObjects)
+        {
+            obj.gameObject.SetActive(false);
+        }
     }
-public void FadeIn(GameObject plane, float duration)
-{
-    EndThePointsConnection();
-    AuroraShader.SetActive(true);
-    Material material = plane.GetComponent<Renderer>().material;
-    
-    // Set material to transparent mode
-    material.SetFloat("_Mode", 3);
-    material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-    material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-    material.SetInt("_ZWrite", 0);
-    material.DisableKeyword("_ALPHATEST_ON");
-    material.EnableKeyword("_ALPHABLEND_ON");
-    material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-    material.renderQueue = 3000;
-    
-    // Start invisible
-    Color color = material.color;
-    color.a = 0f;
-    material.color = color;
-    
-    // Fade in
-    material.DOFade(1f, duration);
-}
+    public void FadeColorIntensity(GameObject plane, float duration)
+    {
+        if (!plane.activeSelf)
+            plane.SetActive(true);
+
+        Renderer r = plane.GetComponent<Renderer>();
+        Material m = r.material;
+
+        // Start with zero intensity (black)
+        Color start = m.color;
+        Color zero = start * 0f;
+        m.color = zero;
+
+        // Target intensity = 1.5x brighter
+        Color target = start * 1.5f;
+
+        // Tween from zero → target
+        m.DOColor(target, duration)
+            .SetEase(Ease.InOutQuad);
+    }
+    public void FadeColorToTarget(GameObject plane, float duration)
+    {
+        if (!plane.activeSelf)
+            plane.SetActive(true);
+
+        Renderer r = plane.GetComponent<Renderer>();
+        Material m = r.material;
+
+        // Increase intensity every call
+        currentIntensityAuroraShader += 0.3f;   // you can change this step size
+
+        // We always base intensity on the original color (not current)
+        Color target = auroraBaseColor * currentIntensityAuroraShader;
+
+        // Tween from current color → target color
+        m.DOColor(target, duration)
+            .SetEase(Ease.InOutQuad);
+    }
+
+
+    public void AuroraFadeIner()
+    {
+        FadeColorToTarget(AuroraShader, 3);
+    }
 }

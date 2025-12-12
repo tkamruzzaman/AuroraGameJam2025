@@ -19,7 +19,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject playerArt;
     private Vector3 mouseWorld;
 
-    public static bool isShooting;
+    public  bool isShooting;
     [Header("Shoot Angles")]
     [SerializeField] Vector2 aimAngleRight;
     [SerializeField] Vector2 aimAngleLeft;
@@ -58,7 +58,17 @@ public class Shoot : MonoBehaviour
             
             player.GetComponent<Player>().CallAction();
             isShooting = true;
+            
 
+        }
+
+        if (bullet)
+        {
+            aimIndicator.SetActive(false);
+        }
+        else
+        {
+            aimIndicator.SetActive(true);
         }
         
     }

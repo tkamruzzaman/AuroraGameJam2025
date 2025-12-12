@@ -13,6 +13,8 @@ public class MainGameplayCameraControllers : MonoBehaviour
     public CinemachineCamera FoxFollowCamera;
     public GameObject FoxTimeline;
     private Transform Echo;
+
+    [SerializeField] private AuroraPointsConnector _auroraPointsConnector;
     //CurrentEcho == bullet
     //cinemachine..f
     void OnEnable()
@@ -44,10 +46,14 @@ public class MainGameplayCameraControllers : MonoBehaviour
     }
     void WalkingIdleCamera()
     {
-        WalkingCamera.gameObject.SetActive(true);
-        BulletShootCamera.gameObject.SetActive(false);
-        WalkingCamera.Follow = player;
-        print("Walking Camera Activated");
+        if (!_auroraPointsConnector.IsAllPointActive)
+        {
+            WalkingCamera.gameObject.SetActive(true);
+            BulletShootCamera.gameObject.SetActive(false);
+            WalkingCamera.Follow = player;
+            print("Walking Camera Activated");
+        }
+        
 
     }
     void BulletShoot()
