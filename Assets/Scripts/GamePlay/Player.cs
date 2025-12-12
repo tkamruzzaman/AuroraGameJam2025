@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using System;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -138,5 +139,13 @@ public class Player : MonoBehaviour
         
         playerAnimator.SetBool(IS_CALLING, true);
         //play calling sound
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            SceneManager.LoadScene("10_Ending"); 
+        }
     }
 }
