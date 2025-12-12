@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class MenuUI : MonoBehaviour
         creditsButton.onClick.AddListener(OnCreditsButtonAction);
         exitButton.onClick.AddListener(OnExitButtonAction);
         creditsPanel.SetActive(false);
+        creditsPanel.transform.DOScale(0, 0.2f);
     }
 
     private void OnPlayButtonAction()
@@ -30,6 +32,7 @@ public class MenuUI : MonoBehaviour
     {
         GameServices.Instance.audioManager.PlayButtonClickSound();
         creditsPanel.SetActive(true);
+        creditsPanel.transform.DOScale(1, 0.2f);
     }
 
     private void OnExitButtonAction()
@@ -42,5 +45,11 @@ public class MenuUI : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void CloseCreditsPanel()
+    {
+        GameServices.Instance.audioManager.PlayButtonClickSound();
+        creditsPanel.transform.DOScale(0, 0.2f).OnComplete(()=> creditsPanel.SetActive(false));
     }
 }

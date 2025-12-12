@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using System;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     public static event Action OnPlayerWalking;
 
     bool isJumping;
+    [SerializeField]private Shoot _shoot;
 
     private void Awake()
     {
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!Shoot.isShooting)
+        if (!_shoot.bullet && !_shoot.isShooting)
         {
             Movement();
         }
@@ -134,7 +136,16 @@ public class Player : MonoBehaviour
 
     public void CallAction()
     {
+        
         playerAnimator.SetBool(IS_CALLING, true);
         //play calling sound
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            SceneManager.LoadScene("10_Ending"); 
+        }
     }
 }

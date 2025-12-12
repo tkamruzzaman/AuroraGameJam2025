@@ -1,5 +1,7 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
+using Random = System.Random;
 
 public class MagnetForce : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class MagnetForce : MonoBehaviour
     private void Start ()
     {
         materialRenderer = GetComponent<Renderer>();
+        StartFloatyRandom(transform, 0.3f, 0.8f, 3f);
+
        
     }
 
@@ -41,17 +45,19 @@ public class MagnetForce : MonoBehaviour
             
             isAlreadyActive = true;
             AuroraPointsConnector.Instance.CheckIfAllActive();
+            AuroraPointsConnector.Instance.AuroraFadeIner();
             DisableColliders();
             ChangeColor();
+            GameServices.Instance.audioManager.PlaySound(GameServices.Instance.audioManager.echoPointActivationClip,1f);
             //OnMagneticStartActivation?.Invoke();
             other.gameObject.GetComponent<MeshRenderer>().enabled = false; 
-            transform.GetChild(0).GetComponent<Animator>().SetBool("IsLit", true);
+           // transform.GetChild(0).GetComponent<Animator>().SetBool("IsLit", true);
             Destroy(other.gameObject);
         }
         
     }
 
-    void ChangeColor()
+    void ChangeColor(bool test)
     {
         materialRenderer.material.EnableKeyword("_EMISSION");
         Color currentEmission = materialRenderer.material.GetColor("_EmissionColor");
@@ -64,6 +70,21 @@ public class MagnetForce : MonoBehaviour
         Color newEmission = baseColor * newIntensity*intensityMultipler;
         materialRenderer.material.SetColor("_EmissionColor", newEmission);
     }
+    void ChangeColor()
+    {
+        // Enable emission
+        materialRenderer.material.EnableKeyword("_EMISSION");
+
+        // HDR color: 53,13,191 with intensity 9
+        Color hdrColor = new Color(53f / 255f, 13f / 255f, 191f / 255f) * 1000f;
+
+        // Set emission color
+        materialRenderer.material.SetColor("_EmissionColor", hdrColor);
+
+        // Make sure your camera supports HDR for it to look bright
+    }
+
+
 
     void DisableColliders()
     {
@@ -74,5 +95,18 @@ public class MagnetForce : MonoBehaviour
         {
             col.isTrigger = true;
         }
+    }
+    
+    public void StartFloatyRandom(Transform target, float minAmount, float maxAmount, float duration = 1f)
+    {
+        // Random starting direction: up or down
+        float dir = UnityEngine.Random.value > 0.5f ? 1f : -1f;
+
+        // Random float amount between min and max
+        float amount = UnityEngine.Random.Range(minAmount, maxAmount) * dir;
+
+        target.DOMoveY(target.position.y + amount, duration)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutSine);
     }
 }

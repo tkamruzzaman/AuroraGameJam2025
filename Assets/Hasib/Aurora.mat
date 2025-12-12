@@ -50,7 +50,7 @@ Material:
     - _TwirlStrength: 0
     m_Colors:
     - _Center: {r: -29, g: 0.74, b: 0, a: 0}
-    - _Color: {r: 0, g: 4.237095, b: 1.8666505, a: 1}
+    - _Color: {r: 0, g: 0.7490196, b: 0.32998028, a: 1}
     - _NoiseSpeed: {r: 0.3, g: 0.3, b: 0, a: 0}
     - _NoiseTiling: {r: 51.32, g: -0.3, b: 0, a: 0}
     - _twirlOffset: {r: 1.7, g: 9.91, b: 0, a: 0}
