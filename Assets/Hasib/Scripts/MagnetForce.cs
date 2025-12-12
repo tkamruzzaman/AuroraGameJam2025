@@ -48,6 +48,7 @@ public class MagnetForce : MonoBehaviour
             AuroraPointsConnector.Instance.AuroraFadeIner();
             DisableColliders();
             ChangeColor();
+            GameServices.Instance.audioManager.PlaySound(GameServices.Instance.audioManager.echoPointActivationClip,1f);
             //OnMagneticStartActivation?.Invoke();
             other.gameObject.GetComponent<MeshRenderer>().enabled = false; 
            // transform.GetChild(0).GetComponent<Animator>().SetBool("IsLit", true);
