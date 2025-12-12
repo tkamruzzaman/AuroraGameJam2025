@@ -9,7 +9,7 @@ public class IntroSceneUI : MonoBehaviour
 
     [Range(0, 1)][SerializeField] float fadeDuration = 0.5f;
     [Range(0, 10)][SerializeField] float displayDuration = 2.0f;
-
+[Range(0, 1)] [SerializeField] float buttonFadeDuration = 0.2f;
     [SerializeField] Button nextButton;
 
     private CanvasGroup currentCanvasGroup;
@@ -20,6 +20,7 @@ public class IntroSceneUI : MonoBehaviour
         nextButton.onClick.AddListener(NextButtonAction);
 
         nextButton.gameObject.SetActive(false);
+        nextButton.transform.DOScale(0, buttonFadeDuration);  
 
         foreach (var canvasGroup in introImageGroups)
         {
@@ -44,6 +45,7 @@ public class IntroSceneUI : MonoBehaviour
         yield return new WaitForSeconds(displayDuration);
 
         nextButton.gameObject.SetActive(true);
+        nextButton.transform.DOScale(1, buttonFadeDuration);
         yield return null;
     }
 
@@ -51,6 +53,7 @@ public class IntroSceneUI : MonoBehaviour
     {
         GameServices.Instance.audioManager.PlayButtonClickSound();
 
+        nextButton.transform.DOScale(0, buttonFadeDuration);
         nextButton.gameObject.SetActive(false);
         currentCanvasGroup.DOFade(0, fadeDuration).OnComplete(() =>
         {

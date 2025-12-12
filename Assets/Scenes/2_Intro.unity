@@ -1553,8 +1553,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -531.8581, y: 3.3758}
-  m_SizeDelta: {x: 528.9011, y: 847.4883}
+  m_AnchoredPosition: {x: 28.7831, y: 321.1}
+  m_SizeDelta: {x: 1650.1836, y: 295.1091}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1261096397
 MonoBehaviour:
@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1715,7 +1715,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -25, y: 25}
-  m_SizeDelta: {x: 150, y: 128}
+  m_SizeDelta: {x: 150, y: 81.69}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1437619878
 MonoBehaviour:
@@ -1774,7 +1774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.41960785}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2085,7 +2085,8 @@ MonoBehaviour:
   - {fileID: 2079270684}
   - {fileID: 761846739}
   fadeDuration: 0.5
-  displayDuration: 5
+  displayDuration: 2.5
+  buttonFadeDuration: 0.2
   nextButton: {fileID: 1437619878}
 --- !u!1 &1714874683
 GameObject:

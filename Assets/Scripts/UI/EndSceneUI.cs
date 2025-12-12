@@ -20,6 +20,7 @@ public class EndSceneUI : MonoBehaviour
         nextButton.onClick.AddListener(NextButtonAction);
 
         nextButton.gameObject.SetActive(false);
+        nextButton.transform.DOScale(0, 0.2f);
 
         foreach (var canvasGroup in endingImageGroups)
         {
@@ -44,6 +45,7 @@ public class EndSceneUI : MonoBehaviour
         yield return new WaitForSeconds(displayDuration);
 
         nextButton.gameObject.SetActive(true);
+        nextButton.transform.DOScale(1, 0.2f);
         yield return null;
     }
 

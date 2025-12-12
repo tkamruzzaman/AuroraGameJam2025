@@ -14,19 +14,19 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.027450979, g: 0.14735048, b: 0.24705882, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.16
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.23905309, g: 0.17977929, b: 0.3773585, a: 1}
+  m_AmbientEquatorColor: {r: 0.03737985, g: 0.04066202, b: 0.3773585, a: 1}
+  m_AmbientGroundColor: {r: 0.043387335, g: 0.12883943, b: 0.23584908, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_AmbientMode: 1
+  m_SubtractiveShadowColor: {r: 0.06950873, g: 0.13945144, b: 0.20754719, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 96d8b2fb59e1ad046af0c799e9a8177c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -34,10 +34,10 @@ RenderSettings:
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
-  m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionBounces: 2
+  m_ReflectionIntensity: 0.143
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 770820287}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 9c795f24fc5826444b57d7824a3508ee, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: c22ec3373829f274e92befe55492b2a9, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1415,53 +1415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa2b9bccfefda549bd1cf67fd922ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: EZhex1991.EZSoftBone::EZhex1991.EZSoftBone.EZSoftBone
-  m_RootBones:
-  - {fileID: 1409987041}
-  m_EndBones: []
-  m_Material: {fileID: 0}
-  m_StartDepth: 0
-  m_SiblingConstraints: 0
-  m_ClosedSiblings: 0
-  m_SiblingRotationConstraints: 1
-  m_LengthUnification: 0
-  m_CollisionLayers:
-    serializedVersion: 2
-    m_Bits: 1
-  m_ExtraColliders: []
-  m_Radius: 0
-  m_RadiusCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_DeltaTimeMode: 0
-  m_ConstantDeltaTime: 0.03
-  m_Iterations: 1
-  m_SleepThreshold: 0.005
-  m_GravityAligner: {fileID: 0}
-  m_Gravity: {x: 0, y: 0, z: 0}
-  m_ForceModule: {fileID: 0}
-  m_ForceScale: 1
-  m_SimulateSpace: {fileID: 0}
 --- !u!1 &743550850
 GameObject:
   m_ObjectHideFlags: 0
@@ -8469,11 +8422,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 836447909}
   m_LocalEulerAnglesHint: {x: 2.48, y: 0, z: 0}
---- !u!4 &1409987041 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8879528566716807029, guid: 83d3b4b51ed0cfd429a509485b3796f1, type: 3}
-  m_PrefabInstance: {fileID: 1911106912}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1423433165
 GameObject:
   m_ObjectHideFlags: 0
@@ -14064,6 +14012,10 @@ PrefabInstance:
     - target: {fileID: 6343555116943507334, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
       propertyPath: m_Name
       value: ChristmasTree_1 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343555116943507334, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7341833443775046216, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
       propertyPath: m_Sprite
@@ -24640,6 +24592,10 @@ PrefabInstance:
     - target: {fileID: 6343555116943507334, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
       propertyPath: m_Name
       value: ChristmasTree_1 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343555116943507334, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7341833443775046216, guid: 5b756549d23923544bc8a0e84307ffae, type: 3}
       propertyPath: m_Sprite
@@ -65045,6 +65001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChristmasTree_1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7475850373881509030, guid: 1ab42a36ca5aa06408c9559bad9a0da6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -65241,6 +65201,10 @@ PrefabInstance:
     - target: {fileID: 6621696206813604588, guid: 390cd81689c2c0e47b4c569c256dfc0a, type: 3}
       propertyPath: m_Name
       value: ChristmasTree_1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621696206813604588, guid: 390cd81689c2c0e47b4c569c256dfc0a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
