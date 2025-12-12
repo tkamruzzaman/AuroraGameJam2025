@@ -178,7 +178,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7a23e6e25abdf40579325a039e5f2db8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b319f82b2adc3418c8284d04e07ca7bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -841,7 +841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 400}
+  m_AnchoredPosition: {x: 0, y: 427.9}
   m_SizeDelta: {x: 1507.8, y: 233.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1574385086
@@ -865,7 +865,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'The sky explodes in a kaleidoscope of colors!
-
 
     It is blindingly beautiful!
     Aurora looks frantically around the sky!'
