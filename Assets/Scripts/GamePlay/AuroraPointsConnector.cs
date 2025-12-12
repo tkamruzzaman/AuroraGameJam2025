@@ -33,6 +33,9 @@ public class AuroraPointsConnector : MonoBehaviour
     public List<Vector3> drawPositions = new List<Vector3>();
     public CinemachineCamera cinemachineCamera;
     public GameObject AuroraShader;
+    public GameObject AuroraShader2;
+    private float currentIntensityAuroraShader=0f;
+    private Color auroraBaseColor;
 
     private void Awake()
     {
@@ -72,6 +75,14 @@ public class AuroraPointsConnector : MonoBehaviour
         
         Debug.Log($"Total required connection targets found: {requiredTargetCount}.");
         cinemachineCamera.Follow = player.transform;
+        auroraBaseColor = AuroraShader.GetComponent<Renderer>().material.color;
+        Renderer r = AuroraShader.GetComponent<Renderer>();
+        Material m = r.material;
+
+        // Start with zero intensity (black)
+        Color start = m.color;
+        Color zero = start * 0f;
+        m.color = zero;
     }
 
     private void Update()
@@ -263,7 +274,9 @@ OnAuroraConnectionComplete?.Invoke();
     }
 
     Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
-    FadeColorIntensity(AuroraShader, 3);
+    currentIntensityAuroraShader = 2.5f;
+    FadeColorToTarget(AuroraShader, 3);
+    FadeColorIntensity(AuroraShader2, 3);
 }
     void EndThePointsConnection()
     {
@@ -295,5 +308,29 @@ OnAuroraConnectionComplete?.Invoke();
         // Tween from zero → target
         m.DOColor(target, duration)
             .SetEase(Ease.InOutQuad);
+    }
+    public void FadeColorToTarget(GameObject plane, float duration)
+    {
+        if (!plane.activeSelf)
+            plane.SetActive(true);
+
+        Renderer r = plane.GetComponent<Renderer>();
+        Material m = r.material;
+
+        // Increase intensity every call
+        currentIntensityAuroraShader += 0.3f;   // you can change this step size
+
+        // We always base intensity on the original color (not current)
+        Color target = auroraBaseColor * currentIntensityAuroraShader;
+
+        // Tween from current color → target color
+        m.DOColor(target, duration)
+            .SetEase(Ease.InOutQuad);
+    }
+
+
+    public void AuroraFadeIner()
+    {
+        FadeColorToTarget(AuroraShader, 3);
     }
 }
