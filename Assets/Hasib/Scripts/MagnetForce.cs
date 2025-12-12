@@ -56,7 +56,7 @@ public class MagnetForce : MonoBehaviour
         
     }
 
-    void ChangeColor()
+    void ChangeColor(bool test)
     {
         materialRenderer.material.EnableKeyword("_EMISSION");
         Color currentEmission = materialRenderer.material.GetColor("_EmissionColor");
@@ -69,6 +69,21 @@ public class MagnetForce : MonoBehaviour
         Color newEmission = baseColor * newIntensity*intensityMultipler;
         materialRenderer.material.SetColor("_EmissionColor", newEmission);
     }
+    void ChangeColor()
+    {
+        // Enable emission
+        materialRenderer.material.EnableKeyword("_EMISSION");
+
+        // HDR color: 53,13,191 with intensity 9
+        Color hdrColor = new Color(53f / 255f, 13f / 255f, 191f / 255f) * 1000f;
+
+        // Set emission color
+        materialRenderer.material.SetColor("_EmissionColor", hdrColor);
+
+        // Make sure your camera supports HDR for it to look bright
+    }
+
+
 
     void DisableColliders()
     {

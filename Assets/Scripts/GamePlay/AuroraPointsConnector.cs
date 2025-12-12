@@ -272,7 +272,7 @@ OnAuroraConnectionComplete?.Invoke();
         }
 
         foxtail.transform.position = endPoint + foxtailOffset;
-        foxtail.SetActive(false);
+        //foxtail.SetActive(false);
     }
 
     Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
