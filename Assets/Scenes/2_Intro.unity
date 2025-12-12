@@ -2085,7 +2085,7 @@ MonoBehaviour:
   - {fileID: 2079270684}
   - {fileID: 761846739}
   fadeDuration: 0.5
-  displayDuration: 5
+  displayDuration: 3
   nextButton: {fileID: 1437619878}
 --- !u!1 &1714874683
 GameObject:
