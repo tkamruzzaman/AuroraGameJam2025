@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 10}
+  m_AnchoredPosition: {x: 50, y: 50}
   m_SizeDelta: {x: 222, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &52652198
@@ -2345,13 +2345,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735062856}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09898711, y: 0.29527554, z: 0.030774197, w: 0.949772}
-  m_LocalPosition: {x: 0, y: 2.5, z: -5}
+  m_LocalRotation: {x: -0.1011042, y: 0.38118458, z: 0.041982125, w: 0.9179945}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2023811028}
-  m_LocalEulerAnglesHint: {x: -11.9, y: 34.54, z: 0}
+  m_LocalEulerAnglesHint: {x: -12.57, y: 45.1, z: 0}
 --- !u!1001 &1770768597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2689,7 +2689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10, y: 10}
+  m_AnchoredPosition: {x: -50, y: 50}
   m_SizeDelta: {x: 412.5, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1976894167
@@ -2863,7 +2863,7 @@ MonoBehaviour:
     Hold: 2
   - Camera: {fileID: 1684276585}
     Blend:
-      Style: 1
+      Style: 0
       Time: 5
       CustomCurve:
         serializedVersion: 2
@@ -2874,7 +2874,7 @@ MonoBehaviour:
     Hold: 2
   - Camera: {fileID: 1323174847}
     Blend:
-      Style: 1
+      Style: 0
       Time: 5
       CustomCurve:
         serializedVersion: 2
