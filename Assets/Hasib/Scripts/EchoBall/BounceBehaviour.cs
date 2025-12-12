@@ -83,7 +83,8 @@ public class BounceBehaviour : MonoBehaviour
         GetComponent<EchoBallMovement>().Bounce(direction, bounce);
         if (bounciness.fallableSnow)
         {
-            SnowFallManager.Instance.PlayFallingSnowParticles(hitPosition+new Vector3(snowOffset,0f,-1f));   
+            print("hit" + hitPosition);
+            SnowFallManager.Instance.PlayFallingSnowParticles(hitPosition+new Vector3(snowOffset,0f,-0.5f));   
         }
     }
 
