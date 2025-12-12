@@ -26,9 +26,12 @@ public class DisableFogForCinemachine : CinemachineExtension
 
         // Re-enable fog after rendering
         // (Cinemachine calls Finalize after rendering)
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.delayCall += () =>
         {
             RenderSettings.fog = previousFog;
         };
+#endif
+
     }
 }
