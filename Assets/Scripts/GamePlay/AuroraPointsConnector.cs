@@ -272,13 +272,14 @@ OnAuroraConnectionComplete?.Invoke();
         }
 
         foxtail.transform.position = endPoint + foxtailOffset;
+        foxtail.SetActive(false);
     }
 
     Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
     currentIntensityAuroraShader = 2.5f;
     FadeColorToTarget(AuroraShader, 3);
     FadeColorIntensity(AuroraShader2, 3);
-
+   
     
     Invoke(nameof(LoadEnding), 5f);
     lastScene.SetActive(true);
