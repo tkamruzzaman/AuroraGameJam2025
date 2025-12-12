@@ -16,7 +16,7 @@ public static event Action OnBulletDestroyed;
     {
         rb = GetComponent<Rigidbody>();
         movement = GetComponent<EchoBallMovement>();
-        Invoke("DestroyBullet", 3);
+        Invoke("DestroyBullet", 5);
     }
     
     void DestroyBullet()
