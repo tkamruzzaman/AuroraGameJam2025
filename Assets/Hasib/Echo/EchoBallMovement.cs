@@ -53,6 +53,14 @@ public class EchoBallMovement : MonoBehaviour
     {
         transform.Rotate(Vector3.up * 2f* Time.deltaTime);
     }
+    
+    public void MoveBullet(Vector3 dir)
+    {
+        dir.z = 0;
+        Launch(dir);
+        
+        rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+    }
 }
 
 

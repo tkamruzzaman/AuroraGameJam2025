@@ -86,7 +86,8 @@ public class Shoot : MonoBehaviour
         // cinemachineCamera.gameObject.SetActive(true);
         // cinemachineCamera.Follow = bullet.transform;
             
-        MoveBullet(dir, bullet);
+        
+        bullet.GetComponent<EchoBallMovement>().MoveBullet(dir);
         isShooting = false;
     }
 
