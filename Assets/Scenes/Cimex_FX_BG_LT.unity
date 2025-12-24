@@ -7361,7 +7361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &290017250
 Transform:
   m_ObjectHideFlags: 0
@@ -28073,7 +28073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1578554119
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -67140,11 +67140,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 910385903585170501, guid: 5147d48ca51fba6438c1539e8f92494f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.805
+      value: 6.671
       objectReference: {fileID: 0}
     - target: {fileID: 910385903585170501, guid: 5147d48ca51fba6438c1539e8f92494f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.491
+      value: 1.56
       objectReference: {fileID: 0}
     - target: {fileID: 910385903585170501, guid: 5147d48ca51fba6438c1539e8f92494f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -96972,6 +96972,14 @@ PrefabInstance:
     - target: {fileID: 6545528465648529071, guid: f3262851844995242a6c68fd2a789f56, type: 3}
       propertyPath: m_Name
       value: ORB Burst
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545528465648529071, guid: f3262851844995242a6c68fd2a789f56, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072383460194783419, guid: f3262851844995242a6c68fd2a789f56, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
