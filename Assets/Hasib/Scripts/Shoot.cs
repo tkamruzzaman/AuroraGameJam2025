@@ -57,7 +57,11 @@ public class Shoot : MonoBehaviour
             Aim();
             
         }
-        
+
+        if (AuroraPointsConnector.Instance.IsAllPointActive)
+        {
+            ClearPreview();
+        }
         
         if (!Player.iswalkingAnimationTrue)
         {
