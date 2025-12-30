@@ -29,22 +29,22 @@ public class Projection : MonoBehaviour
 
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private int maxSimulationSteps = 100;
-    public void SimulateTrajectory(GameObject ball, Vector3 spawnPosition)
+    public void SimulateTrajectory(GameObject ball, Vector3 spawnPosition, Vector3 dir)
     {
         GameObject bulletObj = Instantiate(ball, spawnPosition, Quaternion.identity);
-        bulletObj.GetComponent<Renderer>().enabled = false;
+       // bulletObj.GetComponent<Renderer>().enabled = false;
         SceneManager.MoveGameObjectToScene(bulletObj, _scene);
         
-        float dist = Mathf.Abs(Camera.main.transform.position.z - (-26f));
-
-        // Correct world position of mouse
-         Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist)
-        );
-        
-        // Force Z plane
-        mouseWorld.z = -26f;
-        Vector3 dir = mouseWorld - spawnPosition;
+        // float dist = Mathf.Abs(Camera.main.transform.position.z - (-26f));
+        //
+        // // Correct world position of mouse
+        //  Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(
+        //     new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist)
+        // );
+        //
+        // // Force Z plane
+        // mouseWorld.z = -26f;
+        // Vector3 dir = mouseWorld - spawnPosition;
         bulletObj.GetComponent<EchoBallMovement>().MoveBullet(dir);
         
         lineRenderer.positionCount = maxSimulationSteps;
@@ -52,7 +52,13 @@ public class Projection : MonoBehaviour
         {
             _physicsScene.Simulate(Time.fixedDeltaTime);
             lineRenderer.SetPosition(i, bulletObj.transform.position);
+           
         }
-        Destroy(bulletObj);
+        //Destroy(bulletObj);
+    }
+
+    public void DrawProjection(Vector3 startPosition,Vector3 direction)
+    {
+        
     }
 }

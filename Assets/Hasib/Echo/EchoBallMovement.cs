@@ -17,6 +17,7 @@ public class EchoBallMovement : MonoBehaviour
     public void Launch(Vector3 dir)
     {
         launchDir = dir.normalized;
+        Debug.Log("Its set");
         //timer = 0f;  // reset mellow curve
     }
 
