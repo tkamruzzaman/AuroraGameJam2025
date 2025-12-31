@@ -13,7 +13,7 @@ public class IntroSceneUI : MonoBehaviour
     [SerializeField] Button nextButton;
     
     [Header("Voice Narrations")] public AudioClip introStrip1Clip;
-    public AudioClip introStrip2Clip;
+    public AudioClip[] introStripClips;
     public AudioClip introStrip3Clip;
     public AudioClip introStrip4Clip;
     public AudioClip introStrip5Clip;
@@ -48,7 +48,9 @@ public class IntroSceneUI : MonoBehaviour
 
         currentCanvasGroup.gameObject.SetActive(true);
         currentCanvasGroup.DOFade(1, fadeDuration);
-
+        
+        GameServices.Instance.audioManager.PlayNarration(introStripClips[index]);
+        
         yield return new WaitForSeconds(displayDuration);
 
         nextButton.gameObject.SetActive(true);
@@ -58,6 +60,7 @@ public class IntroSceneUI : MonoBehaviour
 
     void NextButtonAction()
     {
+        GameServices.Instance.audioManager.StopNarration();
         GameServices.Instance.audioManager.PlayButtonClickSound();
 
         nextButton.transform.DOScale(0, buttonFadeDuration);
@@ -74,7 +77,7 @@ public class IntroSceneUI : MonoBehaviour
             }
             else
             {
-                GameServices.Instance.sceneNavigation.LoadScene(Scenes.Game);
+                GameServices.Instance.sceneNavigation.LoadScene(Scenes.Game_Level_01);
             }
         });
     }

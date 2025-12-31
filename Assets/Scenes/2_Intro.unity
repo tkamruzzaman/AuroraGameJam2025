@@ -2283,7 +2283,13 @@ MonoBehaviour:
   buttonFadeDuration: 0.2
   nextButton: {fileID: 1437619878}
   introStrip1Clip: {fileID: 8300000, guid: 8dc932166979d48dd8cd1bd621eae04d, type: 3}
-  introStrip2Clip: {fileID: 8300000, guid: 23180da3eac864e7191c94e4142d87e1, type: 3}
+  introStripClips:
+  - {fileID: 8300000, guid: 8dc932166979d48dd8cd1bd621eae04d, type: 3}
+  - {fileID: 8300000, guid: 23180da3eac864e7191c94e4142d87e1, type: 3}
+  - {fileID: 8300000, guid: b8032ccbb666e41babd0a1d4f892757b, type: 3}
+  - {fileID: 8300000, guid: ba8285e9dd50342c4ab353b7941d795b, type: 3}
+  - {fileID: 8300000, guid: 3984aaa086a774a65a692cf110d14fc2, type: 3}
+  - {fileID: 8300000, guid: ecbf3e00b4aaf44bea0010baf6aeb929, type: 3}
   introStrip3Clip: {fileID: 8300000, guid: b8032ccbb666e41babd0a1d4f892757b, type: 3}
   introStrip4Clip: {fileID: 8300000, guid: ba8285e9dd50342c4ab353b7941d795b, type: 3}
   introStrip5Clip: {fileID: 8300000, guid: 3984aaa086a774a65a692cf110d14fc2, type: 3}

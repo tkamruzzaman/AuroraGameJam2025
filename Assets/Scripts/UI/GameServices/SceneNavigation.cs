@@ -29,6 +29,8 @@ public enum Scenes
 {
     Menu = 0,
     Intro = 1,
-    Game = 2,
-    End = 3,
+    Game_Level_01 = 2,
+    Game_Level_02 = 3,
+    Game_Level_03 = 4,
+    End = 5,
 }

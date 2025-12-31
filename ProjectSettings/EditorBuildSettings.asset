@@ -12,8 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/2_Intro.unity
     guid: 799cb1e5461a24e82a19c39828351aca
   - enabled: 1
-    path: Assets/Scenes/HasibL1.unity
-    guid: 5736018b504808347abcf3e5f4342c73
+    path: Assets/Scenes/HasibL1 Level 1.unity
+    guid: a8f6d9ac12ed20c48a7429bb0de5f40a
+  - enabled: 1
+    path: Assets/Scenes/HasibL1 Level 2.unity
+    guid: 9bf123752b8c95842b4bec2c361988eb
+  - enabled: 1
+    path: Assets/Scenes/HasibL1 Level 3.unity
+    guid: 038070acc40f92d4387441817ad6bdaf
   - enabled: 1
     path: Assets/Scenes/10_Ending.unity
     guid: 2c6103dd46a1243faa1a4e39052d61eb
