@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using System;
 using UnityEngine.SceneManagement;
 
@@ -46,10 +45,6 @@ public class Player : MonoBehaviour
     {
         InputActions.FindActionMap("Player").Disable();
     }
-    private void Start()
-    {
-
-    }
 
     private void Update()
     {
@@ -57,18 +52,14 @@ public class Player : MonoBehaviour
         {
             Movement();
         }
-     
-
         if (jumpAction.WasPressedThisFrame())
         {
             Jump();
         }
-
         if (interactAction.WasPressedThisFrame())
         {
             CallAction();
         }
-
         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(IDLE_STATE))
         {
            // Debug.Log("idle state. change the idle animation here maybe?");
@@ -77,12 +68,11 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         float moveX = moveValue.x;
         float moveY = moveValue.y;
 
-        Vector3 movement = new Vector3(moveX, 0, 0) * moveSpeed * Time.deltaTime;
+        Vector3 movement = Time.deltaTime * moveSpeed * new Vector3(moveX, 0, 0);
         transform.Translate(movement, Space.World);
 
         if (moveX != 0)
@@ -94,7 +84,6 @@ public class Player : MonoBehaviour
             playerArt.transform.localScale = scale;
             //transform.localScale = scale;
             iswalkingAnimationTrue = true;
-            //yhyhthtgr
             OnPlayerWalking?.Invoke();
         }
         else

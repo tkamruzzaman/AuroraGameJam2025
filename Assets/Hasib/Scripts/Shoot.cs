@@ -16,10 +16,21 @@ public class Shoot : MonoBehaviour
     [FormerlySerializedAs("aimIndicator")] [SerializeField] GameObject aimIndicatorHolder;
     [SerializeField] SpriteRenderer aimIndicatorSprite;
     [SerializeField] GameObject aimIndicator;
+    [SerializeField] Transform aimStartPoint;
     [SerializeField] private GameObject playerArt;
     private Vector3 mouseWorld;
 
     public  bool isShooting;
+    [Header("Projection")]
+    [SerializeField] private Projection projection;
+    public LineRenderer line;
+    public int maxBounces = 3;
+    public float rayLength = 50f;
+    
+    public LayerMask obstacleMask;
+
+    private int currentBounce;
+
     [Header("Shoot Angles")]
     [SerializeField] Vector2 aimAngleRight;
     [SerializeField] Vector2 aimAngleLeft;
@@ -41,15 +52,24 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
-        if (!isShooting)
+        if (!isShooting&&  !Player.iswalkingAnimationTrue)
         {
             Aim();
+            
         }
-        
+
+        if (AuroraPointsConnector.Instance.IsAllPointActive)
+        {
+            ClearPreview();
+        }
         
         if (!Player.iswalkingAnimationTrue)
         {
             FlipSpriteBasedOnTarget(playerArt.transform,aimIndicator.transform);
+        }
+        else
+        {
+            ClearPreview();
         }
        
         if (bullet == null && AngleCheck(transform.eulerAngles.z) && Input.GetMouseButtonDown(0) &&  !Player.iswalkingAnimationTrue )
@@ -75,6 +95,7 @@ public class Shoot : MonoBehaviour
 
     public void ShootBullet()
     {
+        ClearPreview();
         // Spawn bullet at player's Z plane
         Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, planeZ);
         bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
@@ -86,7 +107,8 @@ public class Shoot : MonoBehaviour
         // cinemachineCamera.gameObject.SetActive(true);
         // cinemachineCamera.Follow = bullet.transform;
             
-        MoveBullet(dir, bullet);
+        
+        bullet.GetComponent<EchoBallMovement>().MoveBullet(dir);
         isShooting = false;
     }
 
@@ -172,11 +194,109 @@ public class Shoot : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
         transform.rotation =
             Quaternion.Lerp(aimIndicatorHolder.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        currentBounce = 0;
+
+        Vector3 dir =
+            aimIndicator.transform.position -
+            aimIndicatorHolder.transform.position;
+        if (AngleCheck(transform.eulerAngles.z) && !bullet)
+        {
+            PreviewShoot(aimStartPoint.position, dir);
+        }
+        else
+        {
+            ClearPreview();
+        }
+       
+
        // Debug.Log(transform.eulerAngles.z);
+     //  projection.SimulateTrajectory(bulletPrefab,new Vector3(transform.position.x, transform.position.y, planeZ),mouseWorld -aimIndicator.transform.position );
     }
     
-    
-   
+    public void ClearPreview()
+    {
+        currentBounce = 0;
+        line.positionCount = 0;
+    }
+   void PreviewShoot( Vector3 startPosition, Vector3 direction)
+   {
+       
+       if (currentBounce >= maxBounces)
+           return;
+       // Reset only on first call
+       if (currentBounce == 0)
+       {
+           line.positionCount = 0;
+           AddPoint(startPosition);
+       }
 
-   
+       
+
+       startPosition.z = planeZ;
+       direction.Normalize();
+
+       if (Physics.Raycast(startPosition, direction,
+               out RaycastHit hit, rayLength, obstacleMask))
+       {
+           Debug.Log("Found Hit: " + hit.collider.name);
+           if (hit.collider.CompareTag("Obstacle"))
+           {
+               Vector3 hitPoint = hit.point;
+               hitPoint.z = planeZ;
+
+               AddPoint(hitPoint);
+
+               // Reflect 
+               Vector3 reflectedDir =
+                   Vector3.Reflect(direction, hit.normal);
+
+               // Optional: obstacle-specific logic
+               Bounciness b = hit.collider.GetComponent<Bounciness>();
+               if (b != null)
+               {
+                   reflectedDir =
+                       Quaternion.Euler(0, 0, b.BounceAngle) * reflectedDir;
+               }
+
+               currentBounce++;
+
+               // Small offset to avoid re-hitting same collider
+               Vector3 newStart =
+                   hitPoint + reflectedDir * 0.01f;
+
+               PreviewShoot(newStart, reflectedDir);
+               return;
+           }
+           else if ( hit.collider.CompareTag("Sky"))
+           {
+               Vector3 hitPoint = hit.point;
+               hitPoint.z = planeZ;
+               AddPoint(hitPoint);
+           }
+           else
+           {
+               Vector3 endPoint =
+                   startPosition + direction * rayLength;
+               endPoint.z = planeZ;
+               Debug.Log("End Point: " + endPoint);
+               AddPoint(endPoint);
+           }
+       }
+       else
+       {
+           // No hit → draw ray forward and stop
+           Vector3 endPoint =
+               startPosition + direction * rayLength;
+           endPoint.z = planeZ;
+    Debug.Log("End Point: " + endPoint);
+           AddPoint(endPoint);
+       }
+   }
+
+   private void AddPoint(Vector3 point)
+   {
+       int index = line.positionCount;
+       line.positionCount = index + 1;
+       line.SetPosition(index, point);
+   }
 }

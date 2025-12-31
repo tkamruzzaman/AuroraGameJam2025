@@ -35,6 +35,7 @@ public class AuroraPointsConnector : MonoBehaviour
     public CinemachineCamera cinemachineCamera;
     public GameObject AuroraShader;
     public GameObject AuroraShader2;
+    public GameObject AuroraShader3;
     private float currentIntensityAuroraShader=0f;
     private Color auroraBaseColor;
     [SerializeField] private GameObject lastScene;
@@ -277,8 +278,9 @@ OnAuroraConnectionComplete?.Invoke();
 
     Debug.Log("--- FOXTAL ANIMATION COMPLETE. PROCEED TO NEXT STEP ---");
     currentIntensityAuroraShader = 2.5f;
-    FadeColorToTarget(AuroraShader, 3);
-    FadeColorIntensity(AuroraShader2, 3);
+    FadeColorToTarget(AuroraShader, 1);
+    FadeColorIntensity(AuroraShader2, 2);
+   // FadeColorIntensity(AuroraShader3, 3);
    
     
     Invoke(nameof(LoadEnding), 5f);

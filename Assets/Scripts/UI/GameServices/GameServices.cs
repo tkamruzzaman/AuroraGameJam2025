@@ -41,8 +41,7 @@ public class GameServices : MonoBehaviour
         eventManager = new EventManager();
 
         eventManager.FireGameServiceInitialized();
-
-
+        
         sceneNavigation ??= FindFirstObjectByType<SceneNavigation>();
         audioManager ??= FindFirstObjectByType<AudioManager>();
     }
