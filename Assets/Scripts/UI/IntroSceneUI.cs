@@ -7,11 +7,18 @@ public class IntroSceneUI : MonoBehaviour
 {
     [SerializeField] private CanvasGroup[] introImageGroups;
 
-    [Range(0, 1)][SerializeField] float fadeDuration = 0.5f;
-    [Range(0, 10)][SerializeField] float displayDuration = 2.0f;
-[Range(0, 1)] [SerializeField] float buttonFadeDuration = 0.2f;
+    [Range(0, 1)] [SerializeField] float fadeDuration = 0.5f;
+    [Range(0, 10)] [SerializeField] float displayDuration = 2.0f;
+    [Range(0, 1)] [SerializeField] float buttonFadeDuration = 0.2f;
     [SerializeField] Button nextButton;
-
+    
+    [Header("Voice Narrations")] public AudioClip introStrip1Clip;
+    public AudioClip introStrip2Clip;
+    public AudioClip introStrip3Clip;
+    public AudioClip introStrip4Clip;
+    public AudioClip introStrip5Clip;
+    public AudioClip introStrip6Clip;
+    
     private CanvasGroup currentCanvasGroup;
     int index = 0;
 
@@ -20,7 +27,7 @@ public class IntroSceneUI : MonoBehaviour
         nextButton.onClick.AddListener(NextButtonAction);
 
         nextButton.gameObject.SetActive(false);
-        nextButton.transform.DOScale(0, buttonFadeDuration);  
+        nextButton.transform.DOScale(0, buttonFadeDuration);
 
         foreach (var canvasGroup in introImageGroups)
         {

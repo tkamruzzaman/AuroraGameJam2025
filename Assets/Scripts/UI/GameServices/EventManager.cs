@@ -1,13 +1,11 @@
-//using UnityEngine;
 using System;
 
-public class EventManager //: MonoBehaviour
+public class EventManager
 {
-    public static event EventHandler  OnGameServiceInitialized;
+    public static event EventHandler OnGameServiceInitialized;
 
-public  void FireGameServiceInitialized()
+    public void FireGameServiceInitialized()
     {
-        OnGameServiceInitialized?.Invoke(this, EventArgs.Empty); 
+        OnGameServiceInitialized?.Invoke(this, EventArgs.Empty);
     }
-
 }

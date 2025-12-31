@@ -12,6 +12,9 @@ public class EndSceneUI : MonoBehaviour
 
     [SerializeField] Button nextButton;
 
+    [Header("Voice Narrations")] 
+    public AudioClip endStripClip;
+    
     private CanvasGroup currentCanvasGroup;
     int index = 0;
 
@@ -42,6 +45,7 @@ public class EndSceneUI : MonoBehaviour
         currentCanvasGroup.gameObject.SetActive(true);
         currentCanvasGroup.DOFade(1, fadeDuration);
 
+        GameServices.Instance.audioManager.PlayNarration(endStripClip);
         yield return new WaitForSeconds(displayDuration);
 
         nextButton.gameObject.SetActive(true);
@@ -51,6 +55,7 @@ public class EndSceneUI : MonoBehaviour
 
     void NextButtonAction()
     {
+        GameServices.Instance.audioManager.StopNarration();
         GameServices.Instance.audioManager.PlayButtonClickSound();
 
         nextButton.gameObject.SetActive(false);
