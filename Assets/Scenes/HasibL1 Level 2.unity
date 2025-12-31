@@ -12520,6 +12520,63 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!1001 &1322049926
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.50222
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947915580856976684, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171807537103828699, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
+      propertyPath: m_Name
+      value: ChimexLev02
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a86c1ce1b2a10cd4a87f7e277a85eecf, type: 3}
 --- !u!1 &1325420376
 GameObject:
   m_ObjectHideFlags: 0
@@ -77060,3 +77117,4 @@ SceneRoots:
   - {fileID: 375862270}
   - {fileID: 48878084}
   - {fileID: 1093634349}
+  - {fileID: 1322049926}
