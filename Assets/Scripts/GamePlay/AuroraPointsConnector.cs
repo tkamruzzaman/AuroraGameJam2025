@@ -46,15 +46,34 @@ public class AuroraPointsConnector : MonoBehaviour
 
     public void CheckIfAllActive()
     {
+        int activatedCount = 0;
         foreach (GameObject go in connectedObjects)
         {
-            if (!go.GetComponent<MagnetForce>().isAlreadyActive)
+            if (go.GetComponent<MagnetForce>().isAlreadyActive)
             {
+                activatedCount++;
+            }
+            else
+            {
+                // Don't notify DialogueManager here - OnPointActivated() already handles the count
+                // Just sync the count to ensure it matches (only if higher)
+                if (DialogueManager.Instance != null)
+                {
+                    DialogueManager.Instance.SetActivatedCount(activatedCount);
+                }
                 return;
             }
         }
 
         IsAllPointActive = true;
+        
+        // Notify DialogueManager about level completion
+        // Count is already tracked by OnPointActivated(), just sync to be sure
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.SetActivatedCount(activatedCount);
+            DialogueManager.Instance.OnLevelComplete();
+        }
     }
     private void Start()
     {

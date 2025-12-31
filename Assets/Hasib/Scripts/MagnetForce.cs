@@ -44,6 +44,13 @@ public class MagnetForce : MonoBehaviour
         {
             
             isAlreadyActive = true;
+            
+            // Notify DialogueManager that a point has been activated
+            if (DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.OnPointActivated();
+            }
+            
             AuroraPointsConnector.Instance.CheckIfAllActive();
             AuroraPointsConnector.Instance.AuroraFadeIner();
             DisableColliders();
