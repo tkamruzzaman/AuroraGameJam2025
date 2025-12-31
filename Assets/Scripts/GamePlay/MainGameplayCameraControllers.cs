@@ -35,6 +35,15 @@ public class MainGameplayCameraControllers : MonoBehaviour
 
 
     }
+
+    private void Update()
+    {
+        if (!Player.iswalkingAnimationTrue)
+        {
+            BulletShoot();
+        }
+    }
+
     void FoxFollowCamerShot()
     {
         WalkingCamera.gameObject.SetActive(false);
