@@ -17,6 +17,7 @@ public class EchoBallMovement : MonoBehaviour
     public void Launch(Vector3 dir)
     {
         launchDir = dir.normalized;
+        Debug.Log("Its set");
         //timer = 0f;  // reset mellow curve
     }
 
@@ -52,6 +53,14 @@ public class EchoBallMovement : MonoBehaviour
     void Rotate()
     {
         transform.Rotate(Vector3.up * 2f* Time.deltaTime);
+    }
+    
+    public void MoveBullet(Vector3 dir)
+    {
+        dir.z = 0;
+        Launch(dir);
+        
+        rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
     }
 }
 
