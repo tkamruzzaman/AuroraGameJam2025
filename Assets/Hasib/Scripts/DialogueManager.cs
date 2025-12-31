@@ -65,16 +65,7 @@ public class DialogueManager : MonoBehaviour
     
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        Instance = this;
         
         // Setup canvas group if not assigned
         if (canvasGroup == null && dialoguePanel != null)
